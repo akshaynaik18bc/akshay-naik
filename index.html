@@ -148,55 +148,45 @@ h2{
 .diff .note{color:var(--mist)}.diff .note::before{content:"# ";}
 @keyframes ring{50%{box-shadow:0 0 0 10px rgba(244,197,66,0)}0%,100%{box-shadow:0 0 0 0 rgba(244,197,66,.35)}}
 
-/* ---------- work ---------- */
-.work-feature{margin-top:3.5rem;background:var(--deep);border:1px solid var(--line);border-radius:22px;overflow:hidden}
-.wf-head{padding:clamp(1.5rem,4vw,2.8rem) clamp(1.5rem,4vw,2.8rem) 0;display:grid;grid-template-columns:1fr auto;gap:1rem;align-items:end}
-@media (max-width:700px){.wf-head{grid-template-columns:1fr}}
-.wf-head h3{font-size:clamp(1.9rem,4vw,3rem);line-height:1;letter-spacing:-.02em;font-variation-settings:"opsz" 96,"wdth" 88}
-.wf-head .tag{color:var(--mist);margin-top:.6rem;max-width:34rem}
-.pill{justify-self:start;display:inline-block;padding:.35rem .8rem;border-radius:999px;border:1px solid rgba(244,197,66,.45);color:var(--cashew);font-size:.85rem;white-space:nowrap}
-.arch{padding:1.5rem clamp(.8rem,3vw,2.4rem) .5rem}
-.arch{overflow-x:auto}
-.arch svg{width:100%;min-width:620px;height:auto;display:block}
-.arch .box rect{fill:var(--deeper);stroke:rgba(220,235,230,.22);stroke-width:1.2}
-.arch .box.hot rect{stroke:var(--cashew)}
-.arch .box text{fill:var(--foam);font-family:var(--display);font-size:14px;font-weight:600}
-.arch .box text.s{fill:var(--mist);font-family:var(--mono);font-size:10.5px;font-weight:400}
-.arch .wire{fill:none;stroke:rgba(220,235,230,.2);stroke-width:1.4}
-.arch .pkt{fill:var(--cashew)}
-.arch .pkt.k{fill:var(--kokum)}
-.arch .queue rect{fill:rgba(63,163,124,.12);stroke:rgba(63,163,124,.55)}
-.arch .queue text{fill:var(--foam);font-family:var(--mono);font-size:11px}
-.arch .band{fill:none;stroke:rgba(220,235,230,.18);stroke-dasharray:4 5}
-.arch .band-label{fill:var(--mist);font-family:var(--mono);font-size:11px}
-.wf-body{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid var(--line)}
-@media (max-width:820px){.wf-body{grid-template-columns:1fr}}
-.wf-body > div{padding:clamp(1.4rem,3.5vw,2.4rem)}
-.wf-body > div + div{border-left:1px solid var(--line)}
-@media (max-width:820px){.wf-body > div + div{border-left:0;border-top:1px solid var(--line)}}
-.wf-body h4{font-size:1.05rem;font-weight:700;margin-bottom:.8rem}
-.ticks{list-style:none}
-.ticks li{position:relative;padding-left:1.5rem;margin-bottom:.65rem;color:#c3d6d0}
-.ticks li::before{content:"";position:absolute;left:0;top:.62em;width:.6rem;height:2px;background:var(--cashew)}
-
-.work-pair{display:grid;grid-template-columns:1fr 1.25fr;gap:1.5rem;margin-top:1.5rem}
-@media (max-width:900px){.work-pair{grid-template-columns:1fr}}
-.wcard{border:1px solid var(--line);border-radius:22px;padding:clamp(1.5rem,3.5vw,2.4rem);position:relative;overflow:hidden}
-.wcard.a{background:linear-gradient(160deg,rgba(63,163,124,.14),transparent 60%)}
-.wcard.b{background:linear-gradient(160deg,rgba(210,87,127,.13),transparent 60%)}
-.wcard h3{font-size:clamp(1.5rem,3vw,2.1rem);line-height:1.05;letter-spacing:-.015em;margin-bottom:.4rem;font-variation-settings:"opsz" 72,"wdth" 90}
-.wcard .role{color:var(--mist);margin-bottom:1.2rem}
-.lib{display:flex;align-items:center;gap:.8rem;margin:1.4rem 0 .4rem;font-family:var(--mono);font-size:.78rem;color:var(--mist)}
-.lib span{border:1px dashed rgba(220,235,230,.35);padding:.4rem .6rem;border-radius:8px}
-.lib span.solid{border:1px solid var(--palm);color:var(--foam);background:rgba(63,163,124,.15)}
-.lib svg{flex:none}
-.principles{display:flex;gap:7px;flex-wrap:wrap;margin:1.2rem 0 .3rem}
-.principles i{width:22px;height:22px;border-radius:50%;border:1.5px solid rgba(220,235,230,.3);transition:background .4s, border-color .4s, transform .4s}
-.principles.on i{background:var(--kokum);border-color:var(--kokum)}
-.principles.on i:nth-child(3n){background:transparent;border-color:var(--kokum)}
-.pcap{font-size:.85rem;color:var(--mist);margin-bottom:1rem}
-.chips{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:1rem}
-.chips span{font-size:.82rem;padding:.3rem .65rem;border-radius:999px;background:rgba(220,235,230,.07);color:#c3d6d0}
+/* ---------- approach / agent lab ---------- */
+.lab{margin-top:3rem;background:var(--deep);border:1px solid var(--line);border-radius:22px;overflow:hidden}
+.lab-top{display:flex;flex-wrap:wrap;gap:.8rem;align-items:center;justify-content:space-between;padding:1.1rem 1.4rem;border-bottom:1px solid var(--line)}
+.scen{display:flex;flex-wrap:wrap;gap:.5rem}
+.scen button,.runbtn{font:inherit;font-size:.9rem;background:transparent;color:var(--mist);border:1px solid var(--line);border-radius:999px;padding:.45rem .95rem;cursor:pointer;transition:color .2s,border-color .2s,background .2s}
+.scen button:hover,.runbtn:hover{color:var(--foam);border-color:var(--foam)}
+.scen button[aria-pressed="true"]{background:var(--cashew);color:var(--night);border-color:var(--cashew);font-weight:600}
+.runbtn{display:inline-flex;align-items:center;gap:.5rem}
+.runbtn svg{width:14px;height:14px}
+.lab-req{padding:1.4rem 1.4rem 0;max-width:46rem}
+.lab-req small{display:block;color:var(--mist);font-size:.85rem;margin-bottom:.2rem}
+.lab-req p{font-size:clamp(1.05rem,1.8vw,1.25rem);line-height:1.4}
+.lab-graph{padding:1rem clamp(.6rem,2vw,1.4rem) .4rem;overflow-x:auto;scrollbar-width:thin}
+.lab-graph svg{width:100%;min-width:600px;height:auto;display:block}
+@media (max-width:640px){.trace{height:15rem;line-height:1.6}.trace div{margin-bottom:.35rem}}
+.g-node rect{fill:var(--deeper);stroke:rgba(220,235,230,.2);stroke-width:1.3;transition:stroke .3s, fill .3s}
+.g-node .n{fill:var(--foam);font-family:var(--display);font-size:14px;font-weight:600}
+.g-node .s{fill:var(--mist);font-family:var(--mono);font-size:10.5px}
+.g-node.hot rect{stroke:var(--cashew);fill:#1a2f2a;filter:url(#glow)}
+.g-node.hot .s{fill:var(--cashew)}
+.g-node.done rect{stroke:var(--palm)}
+.g-node.done .s{fill:var(--palm)}
+.g-node.retry rect{stroke:var(--kokum)}
+.g-node.retry .s{fill:var(--kokum)}
+.g-wire{fill:none;stroke:rgba(220,235,230,.18);stroke-width:1.4}
+.g-wire.lit{stroke:rgba(244,197,66,.55)}
+#gBack{fill:none;stroke:var(--kokum);stroke-width:1.4;stroke-dasharray:4 5;opacity:0;transition:opacity .3s}
+#gBack.show{opacity:.9}
+.trace{border-top:1px solid var(--line);background:var(--deeper);font-family:var(--mono);font-size:.8rem;line-height:1.85;padding:.9rem 1.4rem;height:12.5rem;overflow-y:auto}
+.trace div{white-space:pre-wrap;animation:tin .3s ease}
+@keyframes tin{from{opacity:0;transform:translateX(-6px)}}
+.trace .t{color:#5f7e77}.trace .a{color:var(--cashew)}.trace .r{color:var(--kokum)}.trace .ok{color:var(--palm)}
+.lab-note{color:var(--mist);font-size:.88rem;margin-top:.8rem}
+.ways{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 clamp(2rem,5vw,4rem);margin-top:4rem}
+@media (max-width:760px){.ways{grid-template-columns:1fr}}
+.ways > h3{grid-column:1/-1;font-size:1.35rem;font-weight:700;margin-bottom:1rem}
+.way{padding:1.4rem 0 1.6rem;border-top:1px solid var(--line)}
+.way h4{font-size:1.15rem;font-weight:700;margin-bottom:.35rem;font-variation-settings:"opsz" 40,"wdth" 92}
+.way p{color:#c3d6d0;max-width:30rem}
 
 /* ---------- strata ---------- */
 .strata{margin-top:3.5rem;border-radius:22px;overflow:hidden;border:1px solid var(--line)}
@@ -321,7 +311,7 @@ footer{padding:4rem 0 3rem;border-top:1px solid var(--line);margin-top:4rem}
   <a href="#top" class="mark"><i></i>Akshay Naik</a>
   <ul>
     <li><a href="#journey">Journey</a></li>
-    <li><a href="#work">Work</a></li>
+    <li><a href="#approach">Approach</a></li>
     <li><a href="#stack">Stack</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -468,114 +458,55 @@ footer{padding:4rem 0 3rem;border-top:1px solid var(--line);margin-top:4rem}
   </div>
 </section>
 
-<!-- ============ WORK ============ -->
-<section class="block" id="work" style="padding-top:0">
+<!-- ============ APPROACH ============ -->
+<section class="block" id="approach" style="padding-top:0">
   <div class="wrap">
-    <h2>What I'm building now</h2>
-    <p class="intro">Three pieces of recent work at Clarivate: one system I own end to end, one client library, and one architecture proposal.</p>
+    <h2>How I build agent systems</h2>
+    <p class="intro">Pick a request and watch a simplified run of the kind of system I design: a planner splits the work, sub-agents call tools in parallel, and a reviewer checks the results before anything goes out.</p>
 
-    <article class="work-feature">
-      <div class="wf-head">
-        <div>
-          <h3>REIA, the impact analyzer</h3>
-          <p class="tag">A multi-agent system for regulatory change management. When a regulation changes, it works out what that change means for each client.</p>
-        </div>
-        <span class="pill">Owned end to end</span>
+    <div class="lab" id="lab">
+      <div class="lab-top">
+        <div class="scen" id="scen" role="group" aria-label="Choose a request"></div>
+        <button type="button" class="runbtn" id="runAgain"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M13.5 8a5.5 5.5 0 1 1-1.6-3.9M13.5 2v3h-3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Run again</button>
       </div>
-      <div class="arch" id="arch">
-        <svg viewBox="0 0 780 410" role="img" aria-label="REIA architecture: a regulatory change enters a deep-agent orchestrator, which delegates to sub-agents, Claude Skills and Cortellis MCP servers, producing an impact assessment. It runs on AWS Batch with Fargate, with a default queue and per-client-profile queues, provisioned with Terraform.">
+      <div class="lab-req"><small>Request</small><p id="reqText"></p></div>
+      <div class="lab-graph">
+        <svg viewBox="0 0 900 360" role="img" aria-label="Agent graph: request, planner, three sub-agents, reviewer, answer">
           <defs>
-            <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="rgba(220,235,230,.4)"/></marker>
+            <filter id="glow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+            <marker id="gah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="rgba(220,235,230,.4)"/></marker>
+            <marker id="gahk" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#D2577F"/></marker>
           </defs>
-          <!-- wires -->
-          <path id="w1" class="wire" d="M150,150 L212,150" marker-end="url(#ah)"/>
-          <path id="w2" class="wire" d="M392,135 C420,135 420,62 450,62" marker-end="url(#ah)"/>
-          <path id="w3" class="wire" d="M392,150 L450,150" marker-end="url(#ah)"/>
-          <path id="w4" class="wire" d="M392,165 C420,165 420,238 450,238" marker-end="url(#ah)"/>
-          <path id="w5" class="wire" d="M610,62 C635,62 630,140 652,145" marker-end="url(#ah)"/>
-          <path id="w6" class="wire" d="M610,150 L652,150" marker-end="url(#ah)"/>
-          <path id="w7" class="wire" d="M610,238 C635,238 630,160 652,155" marker-end="url(#ah)"/>
-          <!-- boxes -->
-          <g class="box"><rect x="10" y="118" width="140" height="64" rx="10"/><text x="24" y="146">Regulatory</text><text x="24" y="164">change</text></g>
-          <g class="box hot"><rect x="214" y="105" width="178" height="90" rx="12"/><text x="230" y="138">Orchestrator</text><text class="s" x="230" y="158">LangGraph deep agent</text><text class="s" x="230" y="175">plans, delegates, checks</text></g>
-          <g class="box"><rect x="452" y="32" width="158" height="60" rx="10"/><text x="466" y="58">Sub-agents</text><text class="s" x="466" y="76">focused analysis tasks</text></g>
-          <g class="box"><rect x="452" y="120" width="158" height="60" rx="10"/><text x="466" y="146">Claude Skills</text><text class="s" x="466" y="164">domain playbooks</text></g>
-          <g class="box"><rect x="452" y="208" width="158" height="60" rx="10"/><text x="466" y="234">Cortellis MCP</text><text class="s" x="466" y="252">regulatory data tools</text></g>
-          <g class="box hot"><rect x="654" y="112" width="116" height="76" rx="10"/><text x="668" y="142">Impact</text><text x="668" y="160">assessment</text></g>
-          <!-- packets -->
-          <g id="pkts">
-            <circle class="pkt" r="4"><animateMotion dur="1.6s" repeatCount="indefinite"><mpath href="#w1"/></animateMotion></circle>
-            <circle class="pkt" r="3.5"><animateMotion dur="1.8s" begin=".3s" repeatCount="indefinite"><mpath href="#w2"/></animateMotion></circle>
-            <circle class="pkt k" r="3.5"><animateMotion dur="1.5s" begin=".6s" repeatCount="indefinite"><mpath href="#w3"/></animateMotion></circle>
-            <circle class="pkt" r="3.5"><animateMotion dur="1.8s" begin=".9s" repeatCount="indefinite"><mpath href="#w4"/></animateMotion></circle>
-            <circle class="pkt k" r="3.5"><animateMotion dur="1.7s" begin="1.2s" repeatCount="indefinite"><mpath href="#w5"/></animateMotion></circle>
-            <circle class="pkt" r="3.5"><animateMotion dur="1.4s" begin="1.4s" repeatCount="indefinite"><mpath href="#w6"/></animateMotion></circle>
-            <circle class="pkt k" r="3.5"><animateMotion dur="1.7s" begin="1.6s" repeatCount="indefinite"><mpath href="#w7"/></animateMotion></circle>
-          </g>
-          <!-- infra band -->
-          <rect class="band" x="10" y="296" width="760" height="104" rx="14"/>
-          <text class="band-label" x="28" y="320">AWS Batch on ECS Fargate, provisioned with Terraform</text>
-          <g class="queue" id="queues">
-            <g><rect x="28" y="334" width="150" height="44" rx="8"/><text x="44" y="361">default queue</text></g>
-            <g><rect x="194" y="334" width="150" height="44" rx="8"/><text x="210" y="361">client profile A</text></g>
-            <g><rect x="360" y="334" width="150" height="44" rx="8"/><text x="376" y="361">client profile B</text></g>
-            <g><rect x="526" y="334" width="150" height="44" rx="8"/><text x="542" y="361">client profile …</text></g>
-          </g>
-          <text class="band-label" x="692" y="361">ECR</text>
-          <path class="wire" d="M303,195 L303,296" stroke-dasharray="3 4"/>
+          <path id="w-rp" class="g-wire" d="M140,180 L188,180" marker-end="url(#gah)"/>
+          <path id="w-p0" class="g-wire" d="M340,165 C370,165 370,55 398,55" marker-end="url(#gah)"/>
+          <path id="w-p1" class="g-wire" d="M340,180 L398,180" marker-end="url(#gah)"/>
+          <path id="w-p2" class="g-wire" d="M340,195 C370,195 370,305 398,305" marker-end="url(#gah)"/>
+          <path id="w-0r" class="g-wire" d="M570,55 C600,55 600,165 628,165" marker-end="url(#gah)"/>
+          <path id="w-1r" class="g-wire" d="M570,180 L628,180" marker-end="url(#gah)"/>
+          <path id="w-2r" class="g-wire" d="M570,305 C600,305 600,195 628,195" marker-end="url(#gah)"/>
+          <path id="w-ra" class="g-wire" d="M760,180 L798,180" marker-end="url(#gah)"/>
+          <path id="gBack" d="M700,135 C700,62 660,34 574,34" marker-end="url(#gahk)"/>
+
+          <g class="g-node" id="n-req"><rect x="10" y="145" width="130" height="70" rx="10"/><text class="n" x="26" y="175">Request</text><text class="s" x="26" y="194">from a user</text></g>
+          <g class="g-node" id="n-plan"><rect x="190" y="135" width="150" height="90" rx="12"/><text class="n" x="206" y="170">Planner</text><text class="s" x="206" y="190">deep agent</text><text class="s" x="206" y="206" id="planSub">waiting</text></g>
+          <g class="g-node" id="n-a0"><rect x="400" y="20" width="170" height="70" rx="10"/><text class="n" x="416" y="50" id="a0n">Agent</text><text class="s" x="416" y="70" id="a0s">waiting</text></g>
+          <g class="g-node" id="n-a1"><rect x="400" y="145" width="170" height="70" rx="10"/><text class="n" x="416" y="175" id="a1n">Agent</text><text class="s" x="416" y="195" id="a1s">waiting</text></g>
+          <g class="g-node" id="n-a2"><rect x="400" y="270" width="170" height="70" rx="10"/><text class="n" x="416" y="300" id="a2n">Agent</text><text class="s" x="416" y="320" id="a2s">waiting</text></g>
+          <g class="g-node" id="n-rev"><rect x="630" y="135" width="130" height="90" rx="12"/><text class="n" x="646" y="170">Reviewer</text><text class="s" x="646" y="190">checks every</text><text class="s" x="646" y="206">claim</text></g>
+          <g class="g-node" id="n-ans"><rect x="800" y="145" width="90" height="70" rx="10"/><text class="n" x="814" y="175">Answer</text><text class="s" x="814" y="194" id="ansSub">pending</text></g>
+          <g id="pk"></g>
         </svg>
       </div>
-      <div class="wf-body">
-        <div>
-          <h4>What I did</h4>
-          <ul class="ticks">
-            <li>Learned LangGraph from scratch and designed the architecture.</li>
-            <li>Built it on LangGraph's deep agents pattern, with Claude Skills and Cortellis MCP servers.</li>
-            <li>Deployed on AWS Batch with Fargate: a default queue plus a queue per client profile.</li>
-            <li>Converted the infrastructure to Terraform.</li>
-          </ul>
-        </div>
-        <div>
-          <h4>How I run it</h4>
-          <ul class="ticks">
-            <li>Set up GitFlow for the team.</li>
-            <li>Own refactoring and pull request reviews.</li>
-            <li>Onboarded a teammate onto LangGraph and built the impact assessment UI together.</li>
-          </ul>
-          <div class="chips"><span>LangGraph</span><span>Deep agents</span><span>MCP</span><span>Claude</span><span>AWS Batch</span><span>Fargate</span><span>Terraform</span></div>
-        </div>
-      </div>
-    </article>
+      <div class="trace" id="trace" aria-live="polite"></div>
+    </div>
+    <p class="lab-note">This is a scripted simulation that runs in your browser. No model is called and no real data is used.</p>
 
-    <div class="work-pair">
-      <article class="wcard a">
-        <h3>From client package to reusable library</h3>
-        <p class="role">Pharma client engagement, Phase 2 lead</p>
-        <div class="lib" aria-hidden="true">
-          <span>scripts</span>
-          <svg width="40" height="12" viewBox="0 0 40 12"><path d="M0,6 H34" stroke="#3FA37C" stroke-width="1.5"/><path d="M30,1 L38,6 L30,11" fill="none" stroke="#3FA37C" stroke-width="1.5"/></svg>
-          <span class="solid">reusable library</span>
-        </div>
-        <ul class="ticks" style="margin-top:1.2rem">
-          <li>Led Phase 2 of the engagement for a pharma client.</li>
-          <li>Turned the package into a reusable library.</li>
-          <li>Ran code reviews, refactored, and kept the README current.</li>
-          <li>Handed the project over to the client team.</li>
-        </ul>
-      </article>
-
-      <article class="wcard b">
-        <h3>Safety insights platform architecture</h3>
-        <p class="role">RFP response for a global pharma company: a cloud-native platform for drug safety insights</p>
-        <div class="principles" id="principles" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-        <p class="pcap">Gap analysis against 12 architecture principles</p>
-        <ul class="ticks">
-          <li>Drew the architecture in draw.io and Lucidchart and built the slides.</li>
-          <li>Researched MuleSoft and Portkey as integration and gateway options.</li>
-          <li>Answered technical clarifications on AgentCore, Snowflake, graph databases, EU data residency, and cross-account S3 data transfers.</li>
-          <li>Built a Claude skill that drafts RFP responses, to speed up future bids.</li>
-        </ul>
-      </article>
+    <div class="ways">
+      <h3>Principles I build by</h3>
+      <div class="way"><h4>Draw the graph before writing prompts</h4><p>An agent's behaviour lives in its state machine. I design the nodes, edges and checkpoints first, then the prompts.</p></div>
+      <div class="way"><h4>Put data and tools behind MCP</h4><p>Tools exposed as MCP servers can be reused by every agent and swapped without touching the agents themselves.</p></div>
+      <div class="way"><h4>Infrastructure as code from day one</h4><p>Queues, compute and secrets live in Terraform, so every environment can be rebuilt the same way.</p></div>
+      <div class="way"><h4>Let agents check each other</h4><p>A reviewer step that can send work back catches weak answers before a person ever sees them.</p></div>
     </div>
   </div>
 </section>
@@ -660,7 +591,7 @@ footer{padding:4rem 0 3rem;border-top:1px solid var(--line);margin-top:4rem}
       </form>
     </div>
     <div class="quick" id="quick">
-      <button type="button">whoami</button><button type="button">now</button><button type="button">reia</button><button type="button">stack</button><button type="button">goa</button><button type="button">contact</button>
+      <button type="button">whoami</button><button type="button">now</button><button type="button">stack</button><button type="button">goa</button><button type="button">contact</button>
     </div>
   </div>
 </section>
@@ -925,21 +856,129 @@ footer{padding:4rem 0 3rem;border-top:1px solid var(--line);margin-top:4rem}
       if (!e.isIntersecting) return;
       const el = e.target;
       if (el.id === 'state') typeState();
-      if (el.id === 'principles') fillPrinciples();
+      if (el.id === 'lab') startLab();
       if (el.id === 'rec' || el.classList.contains('yrow')) el.classList.add('on');
       io.unobserve(el);
     });
   }, {threshold:.2});
-  ['state','principles','rec'].forEach(id => io.observe(document.getElementById(id)));
+  ['state','lab','rec'].forEach(id => io.observe(document.getElementById(id)));
 
-  function fillPrinciples(){
-    const dots = [...document.querySelectorAll('#principles i')];
-    if (reduce){ document.getElementById('principles').classList.add('on'); return; }
-    dots.forEach((d,i) => setTimeout(() => {
-      d.style.background = i % 3 === 2 ? 'transparent' : C.kokum; d.style.borderColor = C.kokum; d.style.transform = 'scale(1.15)';
-      setTimeout(() => d.style.transform = '', 220);
-    }, i * 110));
+
+
+  /* ---------- agent lab ---------- */
+  const SCEN = [
+    {label:'Assess a regulation change',
+     req:'A health authority published new pharmacovigilance guidance. What changed, and which teams does it affect?',
+     plan:'3 tasks: citations, changes, impact',
+     agents:[{n:'Evidence agent', tool:'mcp: source documents', out:'pulled 14 relevant passages'},
+             {n:'Diff agent', tool:'skill: regulatory-diff', out:'found 5 changed requirements'},
+             {n:'Impact agent', tool:'mcp: regulatory data', out:'mapped changes to 3 teams'}],
+     review:'1 claim has no citation, sending back to evidence agent', retry:'added 2 citations',
+     ok:'all 5 changes are cited', ans:'5 changes, 3 teams'},
+    {label:'Compare trial updates',
+     req:'Three trials in the same indication posted updates this week. How do they compare?',
+     plan:'3 tasks: normalise, fetch, write',
+     agents:[{n:'Endpoint agent', tool:'skill: endpoint-normaliser', out:'aligned 9 endpoints'},
+             {n:'Fetch agent', tool:'mcp: trials data', out:'fetched 3 trial records'},
+             {n:'Writer agent', tool:'skill: comparison-table', out:'drafted comparison table'}],
+     review:'one endpoint uses a different unit, sending back to endpoint agent', retry:'converted units and re-aligned',
+     ok:'table matches the sources', ans:'3 trials compared'},
+    {label:'Answer an RFP question',
+     req:'How would you keep EU patient data inside the EU while using a managed LLM service?',
+     plan:'3 tasks: design, research, write',
+     agents:[{n:'Architecture agent', tool:'skill: reference-designs', out:'proposed a region-pinned design'},
+             {n:'Research agent', tool:'search: past responses', out:'found 4 similar answers'},
+             {n:'Writer agent', tool:'skill: rfp-response', out:'drafted a 300-word answer'}],
+     review:'design is missing the logging path, sending back to architecture agent', retry:'added EU-region log storage',
+     ok:'answer covers every requirement', ans:'response drafted'}
+  ];
+  const $ = id => document.getElementById(id);
+  const scenEl = $('scen'), traceEl = $('trace'), pk = $('pk');
+  let cur = 0, runId = 0, t0 = 0, labStarted = false;
+  SCEN.forEach((sc,i) => {
+    const b = document.createElement('button'); b.type = 'button'; b.textContent = sc.label;
+    b.setAttribute('aria-pressed', i === cur ? 'true' : 'false');
+    b.addEventListener('click', () => { cur = i; [...scenEl.children].forEach((x,j) => x.setAttribute('aria-pressed', j === i ? 'true' : 'false')); runLab(); });
+    scenEl.appendChild(b);
+  });
+  $('runAgain').addEventListener('click', () => runLab());
+  function startLab(){ if (!labStarted){ labStarted = true; runLab(); } }
+
+  const nodes = ['n-req','n-plan','n-a0','n-a1','n-a2','n-rev','n-ans'];
+  const graphBox = document.querySelector('.lab-graph');
+  function follow(g){
+    if (graphBox.scrollWidth <= graphBox.clientWidth + 4) return;
+    const r = g.querySelector('rect'), svg = g.ownerSVGElement;
+    const x = (+r.getAttribute('x') + r.getAttribute('width')/2) / svg.viewBox.baseVal.width * svg.clientWidth;
+    graphBox.scrollTo({left: Math.max(0, x - graphBox.clientWidth/2), behavior: reduce ? 'auto' : 'smooth'});
   }
+  function setNode(id, state){ const g = $(id); g.classList.remove('hot','done','retry'); if (state) g.classList.add(state); if (state === 'hot' || state === 'retry') follow(g); }
+  function setText(id, t){ $(id).textContent = t; }
+  function trunc(t, n){ return t.length > n ? t.slice(0, n-1) + '…' : t; }
+  function log(actor, msg, cls){
+    const d = document.createElement('div');
+    const ts = ((performance.now() - t0)/1000).toFixed(2).padStart(5,' ') + 's';
+    const narrow = traceEl.clientWidth < 560;
+    d.innerHTML = narrow
+      ? `<span class="t">${ts.trim()}</span> <span class="${cls || 'a'}">${actor}</span>\n  ${msg}`
+      : `<span class="t">${ts}</span>  <span class="${cls || 'a'}">${actor.padEnd(18,' ')}</span> ${msg}`;
+    traceEl.appendChild(d); traceEl.scrollTop = traceEl.scrollHeight;
+  }
+  function wait(ms, id){ return new Promise((res, rej) => setTimeout(() => id === runId ? res() : rej('stale'), reduce ? 0 : ms)); }
+  function packet(pathId, ms, id, color){
+    if (reduce) return Promise.resolve();
+    const path = $(pathId), len = path.getTotalLength();
+    const c = document.createElementNS('http://www.w3.org/2000/svg','circle');
+    c.setAttribute('r', 4.5); c.setAttribute('fill', color || C.cashew); c.setAttribute('filter','url(#glow)');
+    pk.appendChild(c); if (path.classList.contains('g-wire')) path.classList.add('lit');
+    return new Promise((res, rej) => {
+      const st = performance.now();
+      (function step(now){
+        if (id !== runId){ c.remove(); return rej('stale'); }
+        const k = Math.min(1, (now - st) / ms), e = k < .5 ? 2*k*k : 1 - Math.pow(-2*k+2, 2)/2;
+        const pt = path.getPointAtLength(e * len); c.setAttribute('cx', pt.x); c.setAttribute('cy', pt.y);
+        if (k < 1) requestAnimationFrame(step); else { c.remove(); res(); }
+      })(st);
+    });
+  }
+  async function runLab(){
+    const id = ++runId, sc = SCEN[cur];
+    t0 = performance.now(); pk.innerHTML = ''; traceEl.innerHTML = '';
+    nodes.forEach(n => setNode(n, null));
+    document.querySelectorAll('#lab .g-wire').forEach(w => w.classList.remove('lit'));
+    $('gBack').classList.remove('show');
+    setText('reqText', sc.req); setText('planSub', 'waiting'); setText('ansSub', 'pending');
+    sc.agents.forEach((a,i) => { setText('a'+i+'n', a.n); setText('a'+i+'s', 'waiting'); });
+    try {
+      setNode('n-req','hot'); log('request', 'received');
+      await wait(450, id); setNode('n-req','done');
+      await packet('w-rp', 550, id);
+      setNode('n-plan','hot'); setText('planSub', 'planning…'); log('planner', 'reading the request');
+      await wait(700, id); setText('planSub', '3 parallel tasks'); log('planner', 'split into ' + sc.plan);
+      await wait(500, id); setNode('n-plan','done');
+      await Promise.all(sc.agents.map(async (a,i) => {
+        await wait(i * 180, id);
+        await packet('w-p'+i, 600, id);
+        setNode('n-a'+i,'hot'); setText('a'+i+'s', '→ ' + trunc(a.tool, 22)); log(a.n.toLowerCase(), 'calling ' + a.tool);
+        await wait(900 + i * 350, id);
+        setNode('n-a'+i,'done'); setText('a'+i+'s', '✓ ' + trunc(a.out, 22)); log(a.n.toLowerCase(), a.out, 'ok');
+        await packet('w-'+i+'r', 550, id);
+      }));
+      setNode('n-rev','hot'); log('reviewer', 'checking 3 results');
+      await wait(800, id);
+      log('reviewer', sc.review, 'r'); $('gBack').classList.add('show');
+      await packet('gBack', 750, id, C.kokum);
+      setNode('n-a0','retry'); setText('a0s', '↻ retrying'); log(sc.agents[0].n.toLowerCase(), 'retrying with feedback', 'r');
+      await wait(1000, id);
+      setNode('n-a0','done'); setText('a0s', '✓ ' + trunc(sc.retry, 22)); log(sc.agents[0].n.toLowerCase(), sc.retry, 'ok');
+      await packet('w-0r', 550, id);
+      await wait(400, id); log('reviewer', sc.ok, 'ok'); setNode('n-rev','done');
+      await packet('w-ra', 500, id);
+      setNode('n-ans','done'); setText('ansSub', 'ready'); log('answer', sc.ans + ', ready to send', 'ok');
+    } catch(e){ if (e !== 'stale') throw e; }
+  }
+  setText('reqText', SCEN[0].req);
+  SCEN[0].agents.forEach((a,i) => setText('a'+i+'n', a.n));
 
   /* ---------- award wall ----------
      Add or edit awards here. kind: 'monthly' (gold), 'culture' (pink) or 'other' (green).
@@ -1006,14 +1045,13 @@ footer{padding:4rem 0 3rem;border-top:1px solid var(--line);margin-top:4rem}
     steps.forEach(s => { const sr = s.getBoundingClientRect(); if (sr.top < marker) s.classList.add('on'); else s.classList.remove('on'); });
     // nav highlight
     let cur = null;
-    ['journey','work','stack','contact'].forEach(id => { const el = document.getElementById(id); if (el.getBoundingClientRect().top < vh*.4) cur = id; });
+    ['journey','approach','stack','contact'].forEach(id => { const el = document.getElementById(id); if (el.getBoundingClientRect().top < vh*.4) cur = id; });
     navLinks.forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#'+cur));
   }
   addEventListener('scroll', onScroll, {passive:true}); onScroll();
 
   /* arch svg pause offscreen / reduced motion */
-  const archSvg = document.querySelector('#arch svg');
-  if (reduce){ archSvg.pauseAnimations && archSvg.pauseAnimations(); document.querySelector('.mapcard svg').pauseAnimations(); }
+  if (reduce){ document.querySelector('.mapcard svg').pauseAnimations(); }
 
   /* ---------- footer waves ---------- */
   const wv = document.getElementById('waves'), wx = wv.getContext('2d');
@@ -1041,7 +1079,6 @@ footer{padding:4rem 0 3rem;border-top:1px solid var(--line);margin-top:4rem}
     help: () => `<span class="m">commands:</span>
   whoami     who I am
   now        what I'm working on
-  reia       the impact analyzer, briefly
   journey    the career graph
   stack      tools, newest first
   goa        where I'm from
@@ -1057,13 +1094,6 @@ AWS Community Builder <span class="m">and</span> AWS certified (ML Engineer, Sol
   LangGraph multi-agent systems, MCP servers, Claude
   AWS Batch, Fargate, Bedrock, OpenSearch, Aurora, Neptune
   Terraform for all of it`,
-    reia: () => `REIA <span class="m">(aria)</span>: regulatory change in, impact assessment out
-  <span class="u">orchestrator</span>  LangGraph deep agent
-  <span class="u">tools</span>         Claude Skills, Cortellis MCP servers
-  <span class="u">runtime</span>       AWS Batch on Fargate, default + per-client queues
-  <span class="u">infra</span>         Terraform
-  <span class="u">process</span>       GitFlow, PR reviews, refactoring
-<span class="m">I own it end to end.</span>`,
     journey: () => `2012  Goa Engineering College
   │
 2016  Software Developer, Anant Infomedia
