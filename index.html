@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Akshay Naik — Technical Architect, GenAI</title>
+<meta name="description" content="Akshay Naik, Associate Technical Architect (GenAI) at Clarivate. Multi-agent systems, MCP servers and AWS infrastructure for life-sciences regulatory intelligence.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --night:#0C1F24;
+  --deep:#11292F;
+  --deeper:#0A191D;
+  --foam:#DCEBE6;
+  --mist:#8DADA5;
+  --cashew:#F4C542;
+  --kokum:#D2577F;
+  --palm:#3FA37C;
+  --line:rgba(220,235,230,.12);
+  --display:"Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --gutter:clamp(1.25rem, 5vw, 4.5rem);
+  --max:1240px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  background:var(--night);color:var(--foam);
+  font-family:var(--display);font-size:1.0625rem;line-height:1.6;
+  font-variation-settings:"opsz" 16;
+  overflow-x:hidden;
+}
+a{color:inherit}
+::selection{background:var(--cashew);color:var(--night)}
+:focus-visible{outline:2px solid var(--cashew);outline-offset:3px;border-radius:4px}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--gutter)}
+.mono{font-family:var(--mono);font-size:.8125rem;letter-spacing:0}
+
+/* ---------- nav ---------- */
+.nav{
+  position:fixed;inset:0 0 auto 0;z-index:50;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:1.1rem var(--gutter);
+  transition:background .4s, backdrop-filter .4s;
+}
+.nav.solid{background:rgba(12,31,36,.78);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav .mark{font-weight:700;font-size:1.05rem;text-decoration:none;display:flex;align-items:center;gap:.6rem}
+.nav .mark i{width:10px;height:10px;border-radius:50%;background:var(--cashew);box-shadow:0 0 0 4px rgba(244,197,66,.18);animation:beat 2.4s ease-in-out infinite}
+@keyframes beat{50%{box-shadow:0 0 0 8px rgba(244,197,66,0)}}
+.nav ul{list-style:none;display:flex;gap:clamp(.9rem,2.5vw,2rem)}
+.nav ul a{text-decoration:none;color:var(--mist);font-size:.95rem;transition:color .2s}
+.nav ul a:hover,.nav ul a.on{color:var(--foam)}
+@media (max-width:620px){.nav ul li:not(:last-child){display:none}}
+
+/* ---------- hero ---------- */
+.hero{position:relative;min-height:100svh;display:flex;align-items:center;overflow:hidden}
+#graph{position:absolute;inset:0;width:100%;height:100%;display:block}
+.hero .wrap{position:relative;z-index:2;width:100%;pointer-events:none}
+.hero .wrap > *{pointer-events:auto}
+.hero-copy{max-width:36rem;padding-top:4rem}
+.hero h1{
+  font-size:clamp(3.6rem, 11vw, 9.5rem);line-height:.86;letter-spacing:-.035em;
+  font-weight:800;font-variation-settings:"opsz" 96,"wdth" 85;
+  margin-bottom:1.6rem;
+}
+.hero h1 .ln{display:block;white-space:nowrap}
+.hero h1 .ch{display:inline-block;font-variation-settings:"opsz" 96,"wdth" 75,"wght" 200;opacity:0;transform:translateY(.25em);
+  transition:font-variation-settings 1.1s cubic-bezier(.2,.7,.1,1), opacity .6s, transform .9s cubic-bezier(.2,.7,.1,1)}
+.hero h1.go .ch{font-variation-settings:"opsz" 96,"wdth" 88,"wght" 800;opacity:1;transform:none}
+.hero .lede{font-size:clamp(1.1rem,1.6vw,1.3rem);line-height:1.5;max-width:31rem;color:var(--foam)}
+.hero .sub{margin-top:1rem;color:var(--mist);max-width:30rem}
+.fade-in{opacity:0;transform:translateY(10px);transition:opacity .8s ease, transform .8s ease}
+.loaded .fade-in{opacity:1;transform:none}
+.loaded .d1{transition-delay:.9s}.loaded .d2{transition-delay:1.1s}.loaded .d3{transition-delay:1.3s}
+.cta{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:2rem}
+.btn{
+  display:inline-flex;align-items:center;gap:.55rem;padding:.8rem 1.3rem;border-radius:999px;
+  text-decoration:none;font-weight:600;font-size:.98rem;border:1px solid var(--line);
+  transition:transform .25s, background .25s, color .25s, border-color .25s;
+}
+.btn.primary{background:var(--cashew);color:var(--night);border-color:var(--cashew)}
+.btn.primary:hover{transform:translateY(-2px);background:#ffd45e}
+.btn.ghost:hover{border-color:var(--foam);transform:translateY(-2px)}
+.run-caption{position:absolute;right:var(--gutter);bottom:1.4rem;z-index:2;color:var(--mist)}
+.run-caption b{color:var(--cashew);font-weight:500}
+@media (max-width:760px){
+  .hero{align-items:flex-start;min-height:auto;padding-bottom:330px}
+  .hero-copy{padding-top:6.5rem}
+  .run-caption{left:var(--gutter);right:auto}
+}
+
+/* ---------- sections ---------- */
+section{position:relative}
+.block{padding:clamp(5rem,12vw,9rem) 0}
+h2{
+  font-size:clamp(2.2rem,5.2vw,4rem);line-height:1;letter-spacing:-.025em;font-weight:700;
+  font-variation-settings:"opsz" 96,"wdth" 90;margin-bottom:1rem;max-width:18ch;
+}
+.intro{color:var(--mist);max-width:38rem;font-size:1.1rem}
+
+/* ---------- about ---------- */
+.about{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(2rem,5vw,4.5rem);align-items:center;margin-top:3rem}
+@media (max-width:900px){.about{grid-template-columns:1fr}}
+.state{
+  background:var(--deeper);border:1px solid var(--line);border-radius:14px;padding:1.4rem 1.5rem 1.6rem;
+  font-family:var(--mono);font-size:clamp(.78rem,1.4vw,.9rem);line-height:1.85;overflow-x:auto;min-height:22rem;
+}
+.state .bar{display:flex;gap:.45rem;margin-bottom:1rem;align-items:center;color:var(--mist);font-size:.75rem}
+.state .bar i{width:9px;height:9px;border-radius:50%;background:var(--line)}
+.state .bar span{margin-left:.6rem}
+.state pre{white-space:pre;font-family:inherit}
+.tk-k{color:var(--mist)}.tk-s{color:var(--palm)}.tk-n{color:var(--cashew)}.tk-p{color:var(--foam)}.tk-c{color:#6b8a83}
+.caret{display:inline-block;width:.55em;height:1.1em;background:var(--cashew);vertical-align:-.2em;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+
+.mapcard figcaption{color:var(--mist);font-size:.95rem;margin-top:.8rem;max-width:26rem}
+.mapcard svg{width:100%;height:auto;display:block}
+#route{stroke-dasharray:6 7}
+.map-pin text{font-family:var(--display);font-size:13px;fill:var(--foam);font-weight:600}
+.map-pin text.s{font-family:var(--mono);font-size:10px;fill:var(--mist);font-weight:400}
+
+/* ---------- journey ---------- */
+.journey{position:relative;margin-top:4rem;padding-left:clamp(2.2rem,5vw,4rem)}
+.rail{position:absolute;left:clamp(.55rem,1.4vw,1rem);top:.6rem;bottom:0;width:2px;background:var(--line);border-radius:2px}
+.rail i{position:absolute;left:0;top:0;width:100%;height:var(--fill,0%);background:linear-gradient(var(--palm),var(--cashew));border-radius:2px;box-shadow:0 0 14px rgba(244,197,66,.5)}
+.step{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.9fr);gap:1.2rem 3rem;padding:0 0 clamp(3.5rem,7vw,5.5rem)}
+@media (max-width:900px){.step{grid-template-columns:1fr}}
+.step::before{
+  content:"";position:absolute;left:calc(-1 * clamp(2.2rem,5vw,4rem) + clamp(.55rem,1.4vw,1rem) - 6px);top:.55rem;
+  width:14px;height:14px;border-radius:50%;background:var(--night);border:2px solid var(--line);transition:all .5s;
+}
+.step.on::before{border-color:var(--cashew);background:var(--cashew);box-shadow:0 0 0 6px rgba(244,197,66,.15)}
+.step .when{font-family:var(--mono);font-size:.8rem;color:var(--mist);margin-bottom:.4rem}
+.step h3{font-size:clamp(1.5rem,2.8vw,2.2rem);line-height:1.1;letter-spacing:-.015em;font-weight:700;font-variation-settings:"opsz" 60,"wdth" 92}
+.step .org{color:var(--cashew);font-weight:600;margin:.3rem 0 .9rem}
+.step p{color:#c3d6d0;max-width:36rem}
+.step p + p{margin-top:.7rem}
+.diff{
+  font-family:var(--mono);font-size:.82rem;line-height:1.9;background:var(--deeper);border:1px solid var(--line);
+  border-radius:12px;padding:1rem 1.2rem;align-self:start;
+}
+.diff .h{color:var(--mist);margin-bottom:.35rem}
+.diff div.l{opacity:0;transform:translateX(-8px);transition:opacity .4s, transform .4s}
+.step.on .diff div.l{opacity:1;transform:none}
+.diff .add{color:var(--palm)}.diff .add::before{content:"+ ";color:var(--palm)}
+.diff .note{color:var(--mist)}.diff .note::before{content:"# ";}
+@keyframes ring{50%{box-shadow:0 0 0 10px rgba(244,197,66,0)}0%,100%{box-shadow:0 0 0 0 rgba(244,197,66,.35)}}
+
+/* ---------- work ---------- */
+.work-feature{margin-top:3.5rem;background:var(--deep);border:1px solid var(--line);border-radius:22px;overflow:hidden}
+.wf-head{padding:clamp(1.5rem,4vw,2.8rem) clamp(1.5rem,4vw,2.8rem) 0;display:grid;grid-template-columns:1fr auto;gap:1rem;align-items:end}
+@media (max-width:700px){.wf-head{grid-template-columns:1fr}}
+.wf-head h3{font-size:clamp(1.9rem,4vw,3rem);line-height:1;letter-spacing:-.02em;font-variation-settings:"opsz" 96,"wdth" 88}
+.wf-head .tag{color:var(--mist);margin-top:.6rem;max-width:34rem}
+.pill{justify-self:start;display:inline-block;padding:.35rem .8rem;border-radius:999px;border:1px solid rgba(244,197,66,.45);color:var(--cashew);font-size:.85rem;white-space:nowrap}
+.arch{padding:1.5rem clamp(.8rem,3vw,2.4rem) .5rem}
+.arch{overflow-x:auto}
+.arch svg{width:100%;min-width:620px;height:auto;display:block}
+.arch .box rect{fill:var(--deeper);stroke:rgba(220,235,230,.22);stroke-width:1.2}
+.arch .box.hot rect{stroke:var(--cashew)}
+.arch .box text{fill:var(--foam);font-family:var(--display);font-size:14px;font-weight:600}
+.arch .box text.s{fill:var(--mist);font-family:var(--mono);font-size:10.5px;font-weight:400}
+.arch .wire{fill:none;stroke:rgba(220,235,230,.2);stroke-width:1.4}
+.arch .pkt{fill:var(--cashew)}
+.arch .pkt.k{fill:var(--kokum)}
+.arch .queue rect{fill:rgba(63,163,124,.12);stroke:rgba(63,163,124,.55)}
+.arch .queue text{fill:var(--foam);font-family:var(--mono);font-size:11px}
+.arch .band{fill:none;stroke:rgba(220,235,230,.18);stroke-dasharray:4 5}
+.arch .band-label{fill:var(--mist);font-family:var(--mono);font-size:11px}
+.wf-body{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid var(--line)}
+@media (max-width:820px){.wf-body{grid-template-columns:1fr}}
+.wf-body > div{padding:clamp(1.4rem,3.5vw,2.4rem)}
+.wf-body > div + div{border-left:1px solid var(--line)}
+@media (max-width:820px){.wf-body > div + div{border-left:0;border-top:1px solid var(--line)}}
+.wf-body h4{font-size:1.05rem;font-weight:700;margin-bottom:.8rem}
+.ticks{list-style:none}
+.ticks li{position:relative;padding-left:1.5rem;margin-bottom:.65rem;color:#c3d6d0}
+.ticks li::before{content:"";position:absolute;left:0;top:.62em;width:.6rem;height:2px;background:var(--cashew)}
+
+.work-pair{display:grid;grid-template-columns:1fr 1.25fr;gap:1.5rem;margin-top:1.5rem}
+@media (max-width:900px){.work-pair{grid-template-columns:1fr}}
+.wcard{border:1px solid var(--line);border-radius:22px;padding:clamp(1.5rem,3.5vw,2.4rem);position:relative;overflow:hidden}
+.wcard.a{background:linear-gradient(160deg,rgba(63,163,124,.14),transparent 60%)}
+.wcard.b{background:linear-gradient(160deg,rgba(210,87,127,.13),transparent 60%)}
+.wcard h3{font-size:clamp(1.5rem,3vw,2.1rem);line-height:1.05;letter-spacing:-.015em;margin-bottom:.4rem;font-variation-settings:"opsz" 72,"wdth" 90}
+.wcard .role{color:var(--mist);margin-bottom:1.2rem}
+.lib{display:flex;align-items:center;gap:.8rem;margin:1.4rem 0 .4rem;font-family:var(--mono);font-size:.78rem;color:var(--mist)}
+.lib span{border:1px dashed rgba(220,235,230,.35);padding:.4rem .6rem;border-radius:8px}
+.lib span.solid{border:1px solid var(--palm);color:var(--foam);background:rgba(63,163,124,.15)}
+.lib svg{flex:none}
+.principles{display:flex;gap:7px;flex-wrap:wrap;margin:1.2rem 0 .3rem}
+.principles i{width:22px;height:22px;border-radius:50%;border:1.5px solid rgba(220,235,230,.3);transition:background .4s, border-color .4s, transform .4s}
+.principles.on i{background:var(--kokum);border-color:var(--kokum)}
+.principles.on i:nth-child(3n){background:transparent;border-color:var(--kokum)}
+.pcap{font-size:.85rem;color:var(--mist);margin-bottom:1rem}
+.chips{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:1rem}
+.chips span{font-size:.82rem;padding:.3rem .65rem;border-radius:999px;background:rgba(220,235,230,.07);color:#c3d6d0}
+
+/* ---------- strata ---------- */
+.strata{margin-top:3.5rem;border-radius:22px;overflow:hidden;border:1px solid var(--line)}
+.layer{display:grid;grid-template-columns:12rem 1fr;align-items:center;gap:1.5rem;padding:1.6rem clamp(1.2rem,3vw,2.2rem);position:relative}
+@media (max-width:760px){.layer{grid-template-columns:1fr;gap:.8rem}}
+.layer + .layer{border-top:1px solid rgba(0,0,0,.25)}
+.layer .lname{font-weight:700;font-size:1.25rem;line-height:1.15}
+.layer .lyears{font-family:var(--mono);font-size:.78rem;color:var(--mist);margin-top:.2rem}
+.layer .rocks{display:flex;flex-wrap:wrap;gap:.5rem}
+.layer .rocks span{
+  padding:.4rem .8rem;border-radius:10px;font-size:.92rem;cursor:default;
+  background:rgba(12,31,36,.45);border:1px solid rgba(220,235,230,.14);
+  transition:transform .25s, background .25s, border-color .25s;
+}
+.layer .rocks span:hover{transform:translateY(-3px) rotate(-1.5deg);border-color:var(--cashew);background:rgba(12,31,36,.75)}
+.l1{background:linear-gradient(90deg,rgba(244,197,66,.2),rgba(244,197,66,.06))}
+.l2{background:linear-gradient(90deg,rgba(63,163,124,.22),rgba(63,163,124,.07))}
+.l3{background:linear-gradient(90deg,rgba(210,87,127,.2),rgba(210,87,127,.06))}
+.l4{background:linear-gradient(90deg,rgba(150,85,60,.32),rgba(150,85,60,.12))}
+.strata-note{color:var(--mist);font-size:.95rem;margin-top:1rem}
+
+/* ---------- recognition ---------- */
+.rec{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(2rem,5vw,4rem);margin-top:4.5rem}
+@media (max-width:860px){.rec{grid-template-columns:1fr}}
+.certs{list-style:none}
+.certs li{display:grid;grid-template-columns:3.2rem 1fr;gap:1rem;align-items:center;padding:1.1rem 0;border-bottom:1px solid var(--line)}
+.certs li:first-child{border-top:1px solid var(--line)}
+.hex{width:3.2rem;height:3.2rem}
+.certs b{display:block;font-weight:600}
+.certs small{color:var(--mist);font-size:.9rem}
+
+/* award wall */
+.awards-sum{color:var(--mist);font-size:1.1rem;max-width:38rem;margin-bottom:2.5rem}
+.awards-sum b{color:var(--foam);font-weight:600}
+.wall{border-top:1px solid var(--line)}
+.yrow{display:grid;grid-template-columns:7rem 1fr;gap:1.5rem;padding:2rem 0 2.4rem;border-bottom:1px solid var(--line)}
+@media (max-width:640px){.yrow{grid-template-columns:1fr;gap:.6rem}}
+.yrow .yl{font-size:clamp(2rem,4vw,2.8rem);font-weight:800;letter-spacing:-.03em;line-height:1;font-variation-settings:"opsz" 96,"wdth" 80;color:rgba(220,235,230,.25);transition:color .6s}
+.yrow.on .yl{color:var(--foam)}
+.yrow .yl small{display:block;font-family:var(--mono);font-size:.75rem;font-weight:400;letter-spacing:0;color:var(--mist);margin-top:.5rem}
+.medals{list-style:none;display:grid;grid-template-columns:repeat(auto-fill,minmax(132px,1fr));gap:2rem 1.2rem}
+.medal{display:flex;flex-direction:column;align-items:center;text-align:center;
+  --c1:#F4C542;--c2:#A8771C;--ink:#3A2906;--r1:#D2577F;--r2:#3FA37C}
+.medal.culture{--c1:#F28AAB;--c2:#8E2A4D;--ink:#3B0D1E;--r1:#F4C542;--r2:#3FA37C}
+.medal.other{--c1:#7FD3B2;--c2:#23705A;--ink:#062A1F;--r1:#F4C542;--r2:#D2577F}
+.swing{display:flex;flex-direction:column;align-items:center;transform-origin:50% 0;opacity:0}
+.yrow.on .swing{animation:drop 1.25s cubic-bezier(.25,1.4,.45,1) forwards;animation-delay:var(--d,0s)}
+@keyframes drop{
+  0%{opacity:0;transform:translateY(-70px) rotate(-14deg)}
+  35%{opacity:1;transform:translateY(0) rotate(10deg)}
+  55%{transform:rotate(-6deg)}
+  72%{transform:rotate(3deg)}
+  86%{transform:rotate(-1.2deg)}
+  100%{opacity:1;transform:none}
+}
+.ribbon{position:relative;width:58px;height:44px;margin-bottom:-14px}
+.ribbon::before,.ribbon::after{content:"";position:absolute;top:0;width:27px;height:52px;
+  background:repeating-linear-gradient(90deg,var(--r1) 0 6px,var(--r2) 6px 9px,var(--r1) 9px 27px)}
+.ribbon::before{left:1px;transform:skewX(16deg);transform-origin:top;filter:brightness(.85)}
+.ribbon::after{right:1px;transform:skewX(-16deg);transform-origin:top}
+.disc{position:relative;z-index:1;width:104px;height:104px;border-radius:50%;overflow:hidden;
+  background:radial-gradient(circle at 34% 28%, rgba(255,255,255,.75), var(--c1) 38%, var(--c2) 100%);
+  box-shadow:inset 0 0 0 4px rgba(255,255,255,.22), inset 0 0 0 8px var(--c2), inset 0 0 0 10px rgba(255,255,255,.18), 0 14px 26px -10px rgba(0,0,0,.7);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--ink);
+  transition:transform .35s cubic-bezier(.3,1.5,.5,1)}
+.disc .st{font-size:.7rem;line-height:1;opacity:.75;letter-spacing:.1em}
+.disc .m{font-weight:800;font-size:1.65rem;line-height:1.05;letter-spacing:-.02em;font-variation-settings:"opsz" 48,"wdth" 85}
+.disc .y{font-family:var(--mono);font-size:.72rem;font-weight:500;opacity:.85}
+.disc::after{content:"";position:absolute;inset:-40%;
+  background:linear-gradient(115deg,transparent 42%,rgba(255,255,255,.65) 50%,transparent 58%);
+  transform:translateX(-120%);animation:shine 6s ease-in-out infinite;animation-delay:var(--sd,0s)}
+@keyframes shine{0%,78%{transform:translateX(-120%)}100%{transform:translateX(120%)}}
+.medal:hover .disc{transform:scale(1.08) rotate(-6deg)}
+.medal .t{margin-top:.9rem;font-weight:600;font-size:.95rem;line-height:1.25}
+.medal .o{color:var(--mist);font-size:.82rem;margin-top:.15rem}
+.elsewhere{margin-top:2.4rem}
+.elsewhere h3{font-size:1.2rem;font-weight:700;margin-bottom:.8rem}
+.links{display:flex;flex-wrap:wrap;gap:.6rem}
+.links a{text-decoration:none;padding:.5rem .95rem;border:1px solid var(--line);border-radius:999px;font-size:.92rem;transition:border-color .2s, background .2s}
+.links a:hover{border-color:var(--cashew);background:rgba(244,197,66,.08)}
+
+/* ---------- terminal ---------- */
+.term{
+  margin-top:3rem;background:var(--deeper);border:1px solid var(--line);border-radius:16px;overflow:hidden;
+  box-shadow:0 30px 80px -30px rgba(0,0,0,.6);
+}
+.term .bar{display:flex;align-items:center;gap:.45rem;padding:.8rem 1rem;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:.75rem;color:var(--mist)}
+.term .bar i{width:10px;height:10px;border-radius:50%;background:rgba(220,235,230,.15)}
+.term .bar i:nth-child(1){background:var(--kokum)}.term .bar i:nth-child(2){background:var(--cashew)}.term .bar i:nth-child(3){background:var(--palm)}
+.term .bar span{margin-left:.6rem}
+#out{font-family:var(--mono);font-size:.88rem;line-height:1.75;padding:1.1rem 1.2rem .4rem;height:clamp(18rem,40vh,24rem);overflow-y:auto;white-space:pre-wrap;word-break:break-word}
+#out .u{color:var(--cashew)}#out .m{color:var(--mist)}#out .g{color:var(--palm)}#out .k{color:var(--kokum)}
+#out a{color:var(--cashew)}
+.prompt{display:flex;align-items:center;gap:.6rem;padding:.6rem 1.2rem 1.1rem;font-family:var(--mono);font-size:.88rem}
+.prompt label{color:var(--palm);white-space:nowrap}
+.prompt input{flex:1;background:transparent;border:0;color:var(--foam);font:inherit;outline:none;caret-color:var(--cashew);min-width:0}
+.quick{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1rem}
+.quick button{font-family:var(--mono);font-size:.8rem;background:transparent;color:var(--mist);border:1px solid var(--line);border-radius:8px;padding:.4rem .7rem;cursor:pointer;transition:color .2s,border-color .2s}
+.quick button:hover{color:var(--foam);border-color:var(--cashew)}
+
+/* ---------- footer ---------- */
+footer{padding:4rem 0 3rem;border-top:1px solid var(--line);margin-top:4rem}
+.foot{display:flex;justify-content:space-between;gap:2rem;flex-wrap:wrap;align-items:flex-end}
+.foot h2{max-width:none;margin:0}
+.foot .contact{display:flex;flex-direction:column;gap:.4rem;align-items:flex-start}
+.foot .contact a{font-size:1.15rem;text-decoration-color:rgba(244,197,66,.5);text-underline-offset:5px}
+.foot .contact a:hover{color:var(--cashew)}
+.colophon{color:var(--mist);font-size:.88rem;margin-top:3rem}
+#waves{display:block;width:100%;height:90px;margin-top:2rem;opacity:.7}
+
+@media (prefers-reduced-motion:reduce){
+  .swing{opacity:1}
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .hero h1 .ch{opacity:1;transform:none;font-variation-settings:"opsz" 96,"wdth" 88,"wght" 800}
+  .fade-in{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav" aria-label="Main">
+  <a href="#top" class="mark"><i></i>Akshay Naik</a>
+  <ul>
+    <li><a href="#journey">Journey</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#stack">Stack</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero" id="top">
+  <canvas id="graph" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <div class="hero-copy">
+      <h1 id="name" aria-label="Akshay Naik"><span class="ln" aria-hidden="true">Akshay</span><span class="ln" aria-hidden="true">Naik</span></h1>
+      <p class="lede fade-in d1">Associate Technical Architect for GenAI at Clarivate. I design multi-agent systems that track regulatory change for life-sciences teams, and the AWS infrastructure they run on.</p>
+      <p class="sub fade-in d2">From Ponda, Goa, now in Bangalore. Almost ten years of shipping software, from Magento storefronts to LangGraph agents.</p>
+      <div class="cta fade-in d3">
+        <a class="btn primary" href="#journey">Follow the run</a>
+        <a class="btn ghost" href="mailto:akshaynaik18bc@gmail.com">Email me</a>
+      </div>
+    </div>
+  </div>
+  <div class="run-caption mono" aria-hidden="true">career.stream() <b id="ss">superstep 0</b></div>
+</header>
+
+<main>
+
+<!-- ============ ABOUT ============ -->
+<section class="block" id="about">
+  <div class="wrap">
+    <h2>Coast, then cloud, then agents</h2>
+    <p class="intro">I started out building websites in Panaji, grew into AWS and serverless at SJ Innovation, and now architect agentic systems for pharma regulatory intelligence. Here's my current state.</p>
+    <div class="about">
+      <div class="state" id="state" aria-label="Profile summary">
+        <div class="bar"><i></i><i></i><i></i><span>graph.get_state("akshay")</span></div>
+        <pre id="statePre"></pre>
+      </div>
+      <figure class="mapcard">
+        <svg viewBox="0 0 320 222" role="img" aria-label="Route from Ponda in Goa to Brookfield in Bangalore">
+          <defs>
+            <linearGradient id="sea" x1="0" x2="1">
+              <stop offset="0" stop-color="#3FA37C" stop-opacity=".28"/>
+              <stop offset="1" stop-color="#3FA37C" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <path d="M0,0 L12,0 C16,12 18,24 20,34 C28,50 34,58 40,69 C48,86 54,100 60,114 C68,130 74,142 80,154 C85,165 88,171 90,177 L93,220 L0,220 Z" fill="url(#sea)"/>
+          <path d="M12,0 C16,12 18,24 20,34 C28,50 34,58 40,69 C48,86 54,100 60,114 C68,130 74,142 80,154 C85,165 88,171 90,177 L93,220" fill="none" stroke="#3FA37C" stroke-opacity=".7" stroke-width="1.3"/>
+          <g id="mapWaves" stroke="#3FA37C" stroke-opacity=".35" fill="none" stroke-width="1">
+            <path d="M2,60 q4,-3 8,0 t8,0"/><path d="M8,110 q4,-3 8,0 t8,0"/><path d="M20,160 q4,-3 8,0 t8,0"/><path d="M30,200 q4,-3 8,0 t8,0"/>
+          </g>
+          <text x="10" y="132" fill="#8DADA5" font-family="IBM Plex Mono, monospace" font-size="9" transform="rotate(-62 10 132)">Arabian Sea</text>
+          <path id="route" d="M36,36 C110,40 170,90 272,172" fill="none" stroke="#F4C542" stroke-width="2"/>
+          <circle r="4" fill="#F4C542" id="traveller"><animateMotion dur="5s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="spline" keySplines=".45 0 .55 1"><mpath href="#route"/></animateMotion></circle>
+          <g class="map-pin"><circle cx="36" cy="36" r="5" fill="#0C1F24" stroke="#F4C542" stroke-width="2"/><text x="46" y="18">Ponda, Goa</text><text class="s" x="46" y="30">where it starts</text></g>
+          <g class="map-pin"><circle cx="272" cy="172" r="6" fill="#F4C542"/><circle cx="272" cy="172" r="6" fill="none" stroke="#F4C542"><animate attributeName="r" values="6;16" dur="2s" repeatCount="indefinite"/><animate attributeName="opacity" values="1;0" dur="2s" repeatCount="indefinite"/></circle><text x="290" y="200" text-anchor="end">Brookfield, Bangalore</text><text class="s" x="290" y="213" text-anchor="end">where I build</text></g>
+        </svg>
+        <figcaption>Educated at Goa Engineering College, worked across Panaji and Verna for eight years, then moved to Bangalore with Clarivate in 2025.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ JOURNEY ============ -->
+<section class="block" id="journey" style="padding-top:0">
+  <div class="wrap">
+    <h2>How I got here</h2>
+    <p class="intro">Each role added something to the stack. The diff next to each step is what I picked up along the way.</p>
+
+    <div class="journey" id="jr">
+      <div class="rail"><i id="railFill"></i></div>
+
+      <article class="step">
+        <div>
+          <div class="when">2012 to 2016</div>
+          <h3>Bachelor's degree in engineering</h3>
+          <div class="org">Goa Engineering College</div>
+          <p>Engineering fundamentals at the Government of Goa's engineering college, after higher secondary science at S.E.S.</p>
+        </div>
+        <div class="diff"><div class="h">state diff</div>
+          <div class="l add">engineering fundamentals</div>
+          <div class="l add">problem solving</div>
+        </div>
+      </article>
+
+      <article class="step">
+        <div>
+          <div class="when">Dec 2016 to Dec 2018, Panaji</div>
+          <h3>Software Developer</h3>
+          <div class="org">Anant Infomedia</div>
+          <p>My first production code. I built websites and web applications for clients with PHP, WordPress and front-end tooling.</p>
+        </div>
+        <div class="diff"><div class="h">state diff</div>
+          <div class="l add">php</div><div class="l add">wordpress</div><div class="l add">jquery, bootstrap, css</div>
+        </div>
+      </article>
+
+      <article class="step">
+        <div>
+          <div class="when">Jan 2019 to Sep 2021, Verna</div>
+          <h3>Software Engineer</h3>
+          <div class="org">SJ Innovation</div>
+          <p>Magento 2 migrations, theming and custom module development, with integrations into Salesforce, CallRail and Pardot. I also built with CakePHP, React, Angular, Ionic, Django and Node.js, and started deploying to AWS with the CDK.</p>
+          <p>I wrote about Magento 2 module development on the company blog, answered questions on Stack Exchange, and won Employee of the Month eight times, plus the SJ Culture Award in 2020.</p>
+        </div>
+        <div class="diff"><div class="h">state diff</div>
+          <div class="l add">magento 2, cakephp 3</div><div class="l add">react, angular, ionic</div><div class="l add">django, node.js, python</div><div class="l add">aws cdk</div><div class="l note">8x employee of the month, culture award</div>
+        </div>
+      </article>
+
+      <article class="step">
+        <div>
+          <div class="when">Oct 2021 to Jun 2022, Goa</div>
+          <h3>Senior Software Engineer</h3>
+          <div class="org">SJ Innovation</div>
+          <p>Moved deeper into AWS architecture: serverless applications on Lambda and API Gateway, with DynamoDB, RDS and S3, built and deployed with the AWS CDK.</p>
+        </div>
+        <div class="diff"><div class="h">state diff</div>
+          <div class="l add">lambda, api gateway</div><div class="l add">dynamodb, rds, s3, ec2</div><div class="l add">serverless architecture</div><div class="l note">3x employee of the month</div>
+        </div>
+      </article>
+
+      <article class="step">
+        <div>
+          <div class="when">Jun 2022 to May 2025, Goa</div>
+          <h3>Tech Lead</h3>
+          <div class="org">SJ Innovation</div>
+          <p>Three years leading delivery: owning architecture decisions, reviewing code, and taking projects from first commit to production.</p>
+        </div>
+        <div class="diff"><div class="h">state diff</div>
+          <div class="l add">technical leadership</div><div class="l add">code review culture</div><div class="l add">delivery ownership</div>
+        </div>
+      </article>
+
+      <article class="step">
+        <div>
+          <div class="when">Apr 2025 to now, Bangalore</div>
+          <h3>Associate Technical Architect, GenAI</h3>
+          <div class="org">Clarivate, Life Sciences &amp; Healthcare</div>
+          <p>Automating pharma regulatory intelligence on top of Cortellis. I design LangGraph multi-agent systems, build MCP servers, integrate Anthropic's Claude, and run it all on AWS with Terraform.</p>
+        </div>
+        <div class="diff"><div class="h">state diff</div>
+          <div class="l add">langgraph, langchain, deep agents</div><div class="l add">mcp servers, claude skills</div><div class="l add">bedrock, opensearch, neptune, aurora</div><div class="l add">batch, ecs fargate, ecr</div><div class="l add">cortellis cri, cci, cti apis</div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ WORK ============ -->
+<section class="block" id="work" style="padding-top:0">
+  <div class="wrap">
+    <h2>What I'm building now</h2>
+    <p class="intro">Three pieces of recent work at Clarivate: one system I own end to end, one client library, and one architecture proposal.</p>
+
+    <article class="work-feature">
+      <div class="wf-head">
+        <div>
+          <h3>REIA, the impact analyzer</h3>
+          <p class="tag">A multi-agent system for regulatory change management. When a regulation changes, it works out what that change means for each client.</p>
+        </div>
+        <span class="pill">Owned end to end</span>
+      </div>
+      <div class="arch" id="arch">
+        <svg viewBox="0 0 780 410" role="img" aria-label="REIA architecture: a regulatory change enters a deep-agent orchestrator, which delegates to sub-agents, Claude Skills and Cortellis MCP servers, producing an impact assessment. It runs on AWS Batch with Fargate, with a default queue and per-client-profile queues, provisioned with Terraform.">
+          <defs>
+            <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="rgba(220,235,230,.4)"/></marker>
+          </defs>
+          <!-- wires -->
+          <path id="w1" class="wire" d="M150,150 L212,150" marker-end="url(#ah)"/>
+          <path id="w2" class="wire" d="M392,135 C420,135 420,62 450,62" marker-end="url(#ah)"/>
+          <path id="w3" class="wire" d="M392,150 L450,150" marker-end="url(#ah)"/>
+          <path id="w4" class="wire" d="M392,165 C420,165 420,238 450,238" marker-end="url(#ah)"/>
+          <path id="w5" class="wire" d="M610,62 C635,62 630,140 652,145" marker-end="url(#ah)"/>
+          <path id="w6" class="wire" d="M610,150 L652,150" marker-end="url(#ah)"/>
+          <path id="w7" class="wire" d="M610,238 C635,238 630,160 652,155" marker-end="url(#ah)"/>
+          <!-- boxes -->
+          <g class="box"><rect x="10" y="118" width="140" height="64" rx="10"/><text x="24" y="146">Regulatory</text><text x="24" y="164">change</text></g>
+          <g class="box hot"><rect x="214" y="105" width="178" height="90" rx="12"/><text x="230" y="138">Orchestrator</text><text class="s" x="230" y="158">LangGraph deep agent</text><text class="s" x="230" y="175">plans, delegates, checks</text></g>
+          <g class="box"><rect x="452" y="32" width="158" height="60" rx="10"/><text x="466" y="58">Sub-agents</text><text class="s" x="466" y="76">focused analysis tasks</text></g>
+          <g class="box"><rect x="452" y="120" width="158" height="60" rx="10"/><text x="466" y="146">Claude Skills</text><text class="s" x="466" y="164">domain playbooks</text></g>
+          <g class="box"><rect x="452" y="208" width="158" height="60" rx="10"/><text x="466" y="234">Cortellis MCP</text><text class="s" x="466" y="252">regulatory data tools</text></g>
+          <g class="box hot"><rect x="654" y="112" width="116" height="76" rx="10"/><text x="668" y="142">Impact</text><text x="668" y="160">assessment</text></g>
+          <!-- packets -->
+          <g id="pkts">
+            <circle class="pkt" r="4"><animateMotion dur="1.6s" repeatCount="indefinite"><mpath href="#w1"/></animateMotion></circle>
+            <circle class="pkt" r="3.5"><animateMotion dur="1.8s" begin=".3s" repeatCount="indefinite"><mpath href="#w2"/></animateMotion></circle>
+            <circle class="pkt k" r="3.5"><animateMotion dur="1.5s" begin=".6s" repeatCount="indefinite"><mpath href="#w3"/></animateMotion></circle>
+            <circle class="pkt" r="3.5"><animateMotion dur="1.8s" begin=".9s" repeatCount="indefinite"><mpath href="#w4"/></animateMotion></circle>
+            <circle class="pkt k" r="3.5"><animateMotion dur="1.7s" begin="1.2s" repeatCount="indefinite"><mpath href="#w5"/></animateMotion></circle>
+            <circle class="pkt" r="3.5"><animateMotion dur="1.4s" begin="1.4s" repeatCount="indefinite"><mpath href="#w6"/></animateMotion></circle>
+            <circle class="pkt k" r="3.5"><animateMotion dur="1.7s" begin="1.6s" repeatCount="indefinite"><mpath href="#w7"/></animateMotion></circle>
+          </g>
+          <!-- infra band -->
+          <rect class="band" x="10" y="296" width="760" height="104" rx="14"/>
+          <text class="band-label" x="28" y="320">AWS Batch on ECS Fargate, provisioned with Terraform</text>
+          <g class="queue" id="queues">
+            <g><rect x="28" y="334" width="150" height="44" rx="8"/><text x="44" y="361">default queue</text></g>
+            <g><rect x="194" y="334" width="150" height="44" rx="8"/><text x="210" y="361">client profile A</text></g>
+            <g><rect x="360" y="334" width="150" height="44" rx="8"/><text x="376" y="361">client profile B</text></g>
+            <g><rect x="526" y="334" width="150" height="44" rx="8"/><text x="542" y="361">client profile …</text></g>
+          </g>
+          <text class="band-label" x="692" y="361">ECR</text>
+          <path class="wire" d="M303,195 L303,296" stroke-dasharray="3 4"/>
+        </svg>
+      </div>
+      <div class="wf-body">
+        <div>
+          <h4>What I did</h4>
+          <ul class="ticks">
+            <li>Learned LangGraph from scratch and designed the architecture.</li>
+            <li>Built it on LangGraph's deep agents pattern, with Claude Skills and Cortellis MCP servers.</li>
+            <li>Deployed on AWS Batch with Fargate: a default queue plus a queue per client profile.</li>
+            <li>Converted the infrastructure to Terraform.</li>
+          </ul>
+        </div>
+        <div>
+          <h4>How I run it</h4>
+          <ul class="ticks">
+            <li>Set up GitFlow for the team.</li>
+            <li>Own refactoring and pull request reviews.</li>
+            <li>Onboarded a teammate onto LangGraph and built the impact assessment UI together.</li>
+          </ul>
+          <div class="chips"><span>LangGraph</span><span>Deep agents</span><span>MCP</span><span>Claude</span><span>AWS Batch</span><span>Fargate</span><span>Terraform</span></div>
+        </div>
+      </div>
+    </article>
+
+    <div class="work-pair">
+      <article class="wcard a">
+        <h3>From client package to reusable library</h3>
+        <p class="role">Pharma client engagement, Phase 2 lead</p>
+        <div class="lib" aria-hidden="true">
+          <span>scripts</span>
+          <svg width="40" height="12" viewBox="0 0 40 12"><path d="M0,6 H34" stroke="#3FA37C" stroke-width="1.5"/><path d="M30,1 L38,6 L30,11" fill="none" stroke="#3FA37C" stroke-width="1.5"/></svg>
+          <span class="solid">reusable library</span>
+        </div>
+        <ul class="ticks" style="margin-top:1.2rem">
+          <li>Led Phase 2 of the engagement for a pharma client.</li>
+          <li>Turned the package into a reusable library.</li>
+          <li>Ran code reviews, refactored, and kept the README current.</li>
+          <li>Handed the project over to the client team.</li>
+        </ul>
+      </article>
+
+      <article class="wcard b">
+        <h3>Safety insights platform architecture</h3>
+        <p class="role">RFP response for a global pharma company: a cloud-native platform for drug safety insights</p>
+        <div class="principles" id="principles" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <p class="pcap">Gap analysis against 12 architecture principles</p>
+        <ul class="ticks">
+          <li>Drew the architecture in draw.io and Lucidchart and built the slides.</li>
+          <li>Researched MuleSoft and Portkey as integration and gateway options.</li>
+          <li>Answered technical clarifications on AgentCore, Snowflake, graph databases, EU data residency, and cross-account S3 data transfers.</li>
+          <li>Built a Claude skill that drafts RFP responses, to speed up future bids.</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STACK ============ -->
+<section class="block" id="stack" style="padding-top:0">
+  <div class="wrap">
+    <h2>The stack, in layers</h2>
+    <p class="intro">Like Goa's laterite, my stack built up in layers. The newest sits on top, but everything rests on what came before.</p>
+    <div class="strata">
+      <div class="layer l1">
+        <div><div class="lname">Agentic AI</div><div class="lyears">2025 to now</div></div>
+        <div class="rocks"><span>LangGraph</span><span>LangChain</span><span>Deep agents</span><span>MCP servers</span><span>Claude Skills</span><span>Anthropic Claude</span><span>Amazon Bedrock</span><span>OpenSearch</span><span>Neptune</span></div>
+      </div>
+      <div class="layer l2">
+        <div><div class="lname">Cloud &amp; infrastructure</div><div class="lyears">2019 to now</div></div>
+        <div class="rocks"><span>Terraform</span><span>AWS CDK</span><span>AWS Batch</span><span>ECS Fargate</span><span>ECR</span><span>Aurora</span><span>Lambda</span><span>API Gateway</span><span>DynamoDB</span><span>RDS</span><span>S3</span><span>EC2</span><span>GitFlow</span></div>
+      </div>
+      <div class="layer l3">
+        <div><div class="lname">Application</div><div class="lyears">2016 to now</div></div>
+        <div class="rocks"><span>Python</span><span>Django</span><span>Node.js</span><span>React</span><span>Angular</span><span>Ionic</span><span>PHP</span><span>Magento 2</span><span>CakePHP 3</span><span>WordPress</span></div>
+      </div>
+      <div class="layer l4">
+        <div><div class="lname">Bedrock</div><div class="lyears">2012 to 2016</div></div>
+        <div class="rocks"><span>Engineering degree, Goa Engineering College</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RECOGNITION ============ -->
+<section class="block" id="recognition" style="padding-top:0">
+  <div class="wrap">
+    <h2>Recognition</h2>
+    <p class="awards-sum" id="awardsSum"></p>
+    <div class="wall" id="wall" role="list" aria-label="Awards"></div>
+
+    <div class="rec" id="rec">
+      <div>
+        <ul class="certs">
+          <li>
+            <svg class="hex" viewBox="0 0 52 52" aria-hidden="true"><path d="M26,3 L46,14.5 L46,37.5 L26,49 L6,37.5 L6,14.5 Z" fill="rgba(244,197,66,.12)" stroke="#F4C542" stroke-width="1.5"/><text x="26" y="30" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" fill="#F4C542">MLA</text></svg>
+            <div><b>AWS Certified Machine Learning Engineer, Associate</b><small>Early adopter of the certification</small></div>
+          </li>
+          <li>
+            <svg class="hex" viewBox="0 0 52 52" aria-hidden="true"><path d="M26,3 L46,14.5 L46,37.5 L26,49 L6,37.5 L6,14.5 Z" fill="rgba(63,163,124,.12)" stroke="#3FA37C" stroke-width="1.5"/><text x="26" y="30" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" fill="#3FA37C">SAA</text></svg>
+            <div><b>AWS Certified Solutions Architect, Associate</b><small>Architecture on AWS</small></div>
+          </li>
+          <li>
+            <svg class="hex" viewBox="0 0 52 52" aria-hidden="true"><path d="M26,3 L46,14.5 L46,37.5 L26,49 L6,37.5 L6,14.5 Z" fill="rgba(210,87,127,.12)" stroke="#D2577F" stroke-width="1.5"/><text x="26" y="30" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" fill="#D2577F">ACB</text></svg>
+            <div><b>AWS Community Builder</b><small>Sharing what I learn with the AWS community</small></div>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <div class="elsewhere">
+          <h3>Find me elsewhere</h3>
+          <div class="links">
+            <a href="https://www.linkedin.com/in/akshaynaik-42b12197" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="https://stackoverflow.com/users/11332940/akshay-naik" target="_blank" rel="noopener">Stack Overflow</a>
+            <a href="https://magento.stackexchange.com/users/78490/akshay-naik" target="_blank" rel="noopener">Magento Stack Exchange</a>
+            <a href="https://forum.ionicframework.com/u/akshaynaiksj/summary" target="_blank" rel="noopener">Ionic Forum</a>
+            <a href="https://sjinnovation.com/magento-2-custom-module-development/" target="_blank" rel="noopener">Magento 2 module blog</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TERMINAL ============ -->
+<section class="block" id="contact" style="padding-top:0">
+  <div class="wrap">
+    <h2>Ask the agent</h2>
+    <p class="intro">A tiny agent that knows my résumé. Type a command, or pick one below.</p>
+    <div class="term">
+      <div class="bar"><i></i><i></i><i></i><span>akshay-agent, running locally in your browser</span></div>
+      <div id="out" aria-live="polite"></div>
+      <form class="prompt" id="pf" autocomplete="off">
+        <label for="cmd">akshay@goa:~$</label>
+        <input id="cmd" type="text" spellcheck="false" placeholder="type help" aria-label="Command">
+      </form>
+    </div>
+    <div class="quick" id="quick">
+      <button type="button">whoami</button><button type="button">now</button><button type="button">reia</button><button type="button">stack</button><button type="button">goa</button><button type="button">contact</button>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <h2>Say hello</h2>
+      <div class="contact">
+        <a href="mailto:akshaynaik18bc@gmail.com">akshaynaik18bc@gmail.com</a>
+        <a href="https://www.linkedin.com/in/akshaynaik-42b12197" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+    <canvas id="waves" aria-hidden="true"></canvas>
+    <p class="colophon">Akshay Naik, Bangalore.</p>
+  </div>
+</footer>
+
+<script>
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const C = {night:'#0C1F24', foam:'#DCEBE6', mist:'#8DADA5', cashew:'#F4C542', kokum:'#D2577F', palm:'#3FA37C'};
+
+  /* ---------- hero name letters ---------- */
+  const h1 = document.getElementById('name');
+  let idx = 0;
+  h1.querySelectorAll('.ln').forEach(ln => {
+    const t = ln.textContent; ln.textContent = '';
+    [...t].forEach(c => {
+      const s = document.createElement('span'); s.className = 'ch'; s.textContent = c;
+      s.style.transitionDelay = (0.15 + idx * 0.07) + 's'; idx++;
+      ln.appendChild(s);
+    });
+  });
+  requestAnimationFrame(() => requestAnimationFrame(() => { h1.classList.add('go'); document.body.classList.add('loaded'); }));
+
+  /* ---------- nav ---------- */
+  const nav = document.getElementById('nav');
+  const navLinks = [...nav.querySelectorAll('ul a')];
+  addEventListener('scroll', () => nav.classList.toggle('solid', scrollY > 40), {passive:true});
+
+  /* ---------- hero graph canvas ---------- */
+  const cv = document.getElementById('graph'), cx = cv.getContext('2d');
+  const ssEl = document.getElementById('ss');
+  const NODES = [
+    {y:'start', t:'Ponda, Goa'},
+    {y:'2012', t:'Goa Engineering College'},
+    {y:'2016', t:'Anant Infomedia'},
+    {y:'2019', t:'SJ Innovation'},
+    {y:'2022', t:'Tech Lead'},
+    {y:'2025', t:'Clarivate'}
+  ];
+  let W, H, dpr, pts = [], mouse = {x:-1e4, y:-1e4}, start = null, particles = [], running = true;
+  const EDGE = 0.75, NODE_IN = 0.45, T0 = 0.9;
+
+  function layout(){
+    dpr = Math.min(devicePixelRatio || 1, 2);
+    W = cv.clientWidth; H = cv.clientHeight;
+    cv.width = W * dpr; cv.height = H * dpr; cx.setTransform(dpr,0,0,dpr,0,0);
+    const mobile = W < 760;
+    const x0 = mobile ? .1 : .52, x1 = mobile ? .88 : .9;
+    const y0 = mobile ? H - 80 : H * .84, y1 = mobile ? H - 285 : H * .16;
+    const zig = mobile ? [0,.5,-.4,.5,-.4,.5,0] : [0,.9,-.6,.8,-.7,.6,0];
+    pts = NODES.map((n,i) => {
+      const f = i / (NODES.length - 1);
+      const bx = W * (x0 + (x1 - x0) * f + (mobile ? 0 : zig[i] * .035));
+      const by = (y0 + (y1 - y0) * f) + (mobile ? zig[i] * 16 : 0);
+      return {...n, bx, by, x:bx, y:by, a:0};
+    });
+  }
+  function ctrl(a,b,i){ const mx=(a.x+b.x)/2, my=(a.y+b.y)/2; const dx=b.x-a.x, dy=b.y-a.y; const k = (i%2?1:-1)*.22; return {x:mx - dy*k, y:my + dx*k}; }
+  function qpt(a,c,b,t){ const u=1-t; return {x:u*u*a.x+2*u*t*c.x+t*t*b.x, y:u*u*a.y+2*u*t*c.y+t*t*b.y}; }
+
+  function drawWaves(t){
+    const base = H * .965;
+    for (let k=0;k<3;k++){
+      cx.beginPath();
+      for (let x=0;x<=W;x+=8){
+        const y = base - k*12 + Math.sin(x*.012 + t*(.6+k*.25) + k) * (4+k*1.5);
+        x ? cx.lineTo(x,y) : cx.moveTo(x,y);
+      }
+      cx.strokeStyle = `rgba(63,163,124,${.28 - k*.07})`; cx.lineWidth = 1.2; cx.stroke();
+    }
+  }
+  function drawDots(t){
+    const g = 34; cx.fillStyle = C.foam;
+    for (let y = g/2; y < H*.82; y += g){
+      for (let x = g/2; x < W; x += g){
+        const d = Math.hypot(x-mouse.x, y-mouse.y);
+        const near = Math.max(0, 1 - d/180);
+        const lift = 1 - y/(H*.82);
+        cx.globalAlpha = .035 + lift*.04 + near*.35;
+        cx.fillRect(x, y, 1.4 + near*1.2, 1.4 + near*1.2);
+      }
+    }
+    cx.globalAlpha = 1;
+  }
+
+  function frame(now){
+    if (!running) return;
+    if (start === null) start = now;
+    const t = reduce ? 99 : (now - start) / 1000;
+    cx.clearRect(0,0,W,H);
+    drawDots(t);
+    if (!reduce) drawWaves(t); else drawWaves(0);
+
+    // mouse parallax
+    pts.forEach(p => {
+      const dx = mouse.x - p.bx, dy = mouse.y - p.by, d = Math.hypot(dx,dy);
+      const pull = d < 220 ? (1 - d/220) * 14 : 0;
+      p.x += ((p.bx + (d? dx/d*pull:0)) - p.x) * .1;
+      p.y += ((p.by + (d? dy/d*pull:0)) - p.y) * .1;
+    });
+
+    const elapsed = Math.max(0, t - T0);
+    const head = elapsed / EDGE;               // fractional progress along edges
+    let reached = 0;
+
+    // edges
+    for (let i=0;i<pts.length-1;i++){
+      const a = pts[i], b = pts[i+1], c = ctrl(a,b,i);
+      const prog = Math.min(1, Math.max(0, head - i));
+      // base dashed
+      cx.setLineDash(b.open ? [4,6] : [2,6]);
+      cx.beginPath(); cx.moveTo(a.x,a.y); cx.quadraticCurveTo(c.x,c.y,b.x,b.y);
+      cx.strokeStyle = 'rgba(220,235,230,.14)'; cx.lineWidth = 1.2; cx.stroke();
+      cx.setLineDash([]);
+      if (prog > 0){
+        cx.beginPath(); cx.moveTo(a.x,a.y);
+        const N = 28;
+        for (let s=1;s<=N*prog;s++){ const q = qpt(a,c,b,s/N); cx.lineTo(q.x,q.y); }
+        const q = qpt(a,c,b,prog); cx.lineTo(q.x,q.y);
+        const grd = cx.createLinearGradient(a.x,a.y,b.x,b.y);
+        grd.addColorStop(0, C.palm); grd.addColorStop(1, C.cashew);
+        cx.strokeStyle = b.open ? 'rgba(244,197,66,.55)' : grd; cx.lineWidth = 2;
+        if (b.open) cx.setLineDash([5,6]);
+        cx.stroke(); cx.setLineDash([]);
+        if (prog < 1){ // travelling head
+          cx.beginPath(); cx.arc(q.x,q.y,4,0,Math.PI*2); cx.fillStyle = C.cashew;
+          cx.shadowColor = C.cashew; cx.shadowBlur = 16; cx.fill(); cx.shadowBlur = 0;
+        }
+        if (prog >= 1) reached = i+1;
+      }
+    }
+    if (elapsed > 0) reached = Math.max(reached, 0);
+    ssEl.textContent = 'superstep ' + reached + (reached >= pts.length-1 ? ': Clarivate' : '');
+
+    // spawn flow particles on completed edges
+    if (!reduce && Math.random() < .35 && reached > 0){
+      const i = Math.floor(Math.random() * Math.min(reached, pts.length-1));
+      particles.push({i, s:0, v:.006 + Math.random()*.008, k: Math.random() < .25});
+    }
+    particles = particles.filter(p => p.s <= 1);
+    particles.forEach(p => {
+      p.s += p.v; const a = pts[p.i], b = pts[p.i+1]; const q = qpt(a, ctrl(a,b,p.i), b, Math.min(p.s,1));
+      cx.beginPath(); cx.arc(q.x,q.y,1.8,0,Math.PI*2);
+      cx.fillStyle = p.k ? C.kokum : C.cashew; cx.globalAlpha = Math.sin(p.s*Math.PI)*.9; cx.fill(); cx.globalAlpha = 1;
+    });
+
+    // nodes
+    const mobile = W < 760;
+    pts.forEach((p,i) => {
+      const arrive = i === 0 ? 0 : i * EDGE;
+      const target = elapsed >= arrive ? Math.min(1, (elapsed - arrive) / NODE_IN) : 0;
+      p.a = reduce ? 1 : target;
+      const e = 1 - Math.pow(1 - p.a, 3);
+      const r = 7 + e * (i === pts.length - 1 ? 5 : 2);
+      // halo
+      if (e > 0){
+        const pulse = p.open ? (Math.sin(t*3)+1)/2 : (i === pts.length-1 ? (Math.sin(t*2)+1)/2 : 0);
+        cx.beginPath(); cx.arc(p.x,p.y, r + 8 + pulse*10, 0, Math.PI*2);
+        cx.fillStyle = `rgba(244,197,66,${(.10 + pulse*.08) * e})`; cx.fill();
+      }
+      cx.beginPath(); cx.arc(p.x,p.y,r,0,Math.PI*2);
+      if (p.open){ cx.setLineDash([3,3]); cx.strokeStyle = e ? C.cashew : 'rgba(220,235,230,.3)'; cx.lineWidth = 1.6; cx.fillStyle = C.night; cx.fill(); cx.stroke(); cx.setLineDash([]); }
+      else { cx.fillStyle = e ? C.cashew : C.night; cx.strokeStyle = e ? C.cashew : 'rgba(220,235,230,.3)'; cx.lineWidth = 1.6; cx.fill(); cx.stroke(); }
+      if (e > 0 && !p.open){ cx.beginPath(); cx.arc(p.x,p.y,r*.38,0,Math.PI*2); cx.fillStyle = C.night; cx.fill(); }
+
+      // labels
+      if (e > 0){
+        const dir = mobile ? (i % 2 ? -1 : 1) : (i % 2 ? 1 : -1);
+        cx.globalAlpha = e;
+        const off = 16 + (1-e)*8;
+        if (mobile){
+          cx.textAlign = 'center';
+          const ly = p.y + dir * (off + 4);
+          cx.font = '500 10px "IBM Plex Mono", monospace'; cx.fillStyle = C.mist;
+          cx.fillText(NODES[i].y, p.x, dir < 0 ? ly - 12 : ly + 2);
+          cx.font = '600 11px "Bricolage Grotesque", sans-serif'; cx.fillStyle = C.foam;
+          if (i===0 || i===pts.length-1) cx.fillText(NODES[i].t, p.x, dir < 0 ? ly + 1 : ly + 15);
+        } else {
+          const last = i === pts.length-1;
+          cx.textAlign = last ? 'right' : (dir > 0 ? 'left' : 'right');
+          const lx = last ? p.x + 12 : p.x + dir * off;
+          const ly = last ? p.y + 30 + (1-e)*8 : p.y;
+          cx.font = '500 11px "IBM Plex Mono", monospace'; cx.fillStyle = C.mist;
+          cx.fillText(NODES[i].y, lx, ly - 4);
+          cx.font = (i === pts.length-1 ? '700 17px' : '600 14px') + ' "Bricolage Grotesque", sans-serif';
+          cx.fillStyle = i === pts.length-1 ? C.cashew : C.foam;
+          cx.fillText(NODES[i].t, lx, ly + 15);
+        }
+        cx.globalAlpha = 1;
+      }
+    });
+
+    if (reduce){ return; }
+    requestAnimationFrame(frame);
+  }
+  layout();
+  addEventListener('resize', () => { layout(); if (reduce) requestAnimationFrame(frame); });
+  cv.parentElement.addEventListener('pointermove', e => { const r = cv.getBoundingClientRect(); mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top; });
+  cv.parentElement.addEventListener('pointerleave', () => { mouse.x = mouse.y = -1e4; });
+  const go = () => requestAnimationFrame(frame);
+  (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(go);
+  new IntersectionObserver(([e]) => { const was = running; running = e.isIntersecting; if (running && !was && !reduce) go(); }).observe(cv);
+
+  /* ---------- state object typing ---------- */
+  const stateLines = [
+    ['p','state'],['p',' = {'],['n',''],
+    ['k','  name'],['p',': '],['s','"Akshay Naik"'],['p',','],['n',''],
+    ['k','  role'],['p',': '],['s','"Associate Technical Architect, GenAI"'],['p',','],['n',''],
+    ['k','  org'],['p',': '],['s','"Clarivate, Life Sciences & Healthcare"'],['p',','],['n',''],
+    ['k','  domain'],['p',': '],['s','"pharma regulatory intelligence"'],['p',','],['n',''],
+    ['k','  based_in'],['p',': '],['s','"Brookfield, Bangalore"'],['p',','],['n',''],
+    ['k','  from'],['p',': '],['s','"Ponda, Goa"'],['p',','],['n',''],
+    ['k','  years_shipping'],['p',': '],['num','9.8'],['p',','],['n',''],
+    ['k','  builds'],['p',': ['],['n',''],
+    ['s','    "multi-agent systems"'],['p',','],['n',''],
+    ['s','    "MCP servers"'],['p',','],['n',''],
+    ['s','    "AWS infra in Terraform"'],['n',''],
+    ['p','  ]'],['n',''],
+    ['p','}']
+  ];
+  const pre = document.getElementById('statePre');
+  const cls = {p:'tk-p',k:'tk-k',s:'tk-s',num:'tk-n',c:'tk-c'};
+  function renderStateAll(){
+    pre.innerHTML = stateLines.map(([k,v]) => k==='n' ? '\n' : `<span class="${cls[k]}">${v.replace(/&/g,'&amp;')}</span>`).join('');
+  }
+  let typed = false;
+  function typeState(){
+    if (typed) return; typed = true;
+    if (reduce){ renderStateAll(); return; }
+    let li = 0, ci = 0, html = '';
+    const caret = '<span class="caret"></span>';
+    (function step(){
+      if (li >= stateLines.length){ pre.innerHTML = html + caret; return; }
+      const [k,v] = stateLines[li];
+      if (k === 'n'){ html += '\n'; li++; ci = 0; pre.innerHTML = html + caret; setTimeout(step, 40); return; }
+      ci += 3;
+      const part = v.slice(0, ci).replace(/&/g,'&amp;');
+      pre.innerHTML = html + `<span class="${cls[k]}">${part}</span>` + caret;
+      if (ci >= v.length){ html += `<span class="${cls[k]}">${v.replace(/&/g,'&amp;')}</span>`; li++; ci = 0; }
+      setTimeout(step, 14);
+    })();
+  }
+
+  /* ---------- observers ---------- */
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const el = e.target;
+      if (el.id === 'state') typeState();
+      if (el.id === 'principles') fillPrinciples();
+      if (el.id === 'rec' || el.classList.contains('yrow')) el.classList.add('on');
+      io.unobserve(el);
+    });
+  }, {threshold:.2});
+  ['state','principles','rec'].forEach(id => io.observe(document.getElementById(id)));
+
+  function fillPrinciples(){
+    const dots = [...document.querySelectorAll('#principles i')];
+    if (reduce){ document.getElementById('principles').classList.add('on'); return; }
+    dots.forEach((d,i) => setTimeout(() => {
+      d.style.background = i % 3 === 2 ? 'transparent' : C.kokum; d.style.borderColor = C.kokum; d.style.transform = 'scale(1.15)';
+      setTimeout(() => d.style.transform = '', 220);
+    }, i * 110));
+  }
+
+  /* ---------- award wall ----------
+     Add or edit awards here. kind: 'monthly' (gold), 'culture' (pink) or 'other' (green).
+     month is optional, e.g. {title:'Performer of the Month', org:'Clarivate', month:'Jan', year:2026, kind:'monthly'} */
+  const AWARDS = [
+    {title:'Employee of the Month', org:'SJ Innovation', month:'Sep', year:2019, kind:'monthly'},
+    {title:'Employee of the Month', org:'SJ Innovation', month:'Feb', year:2020, kind:'monthly'},
+    {title:'Employee of the Month', org:'SJ Innovation', month:'Mar', year:2020, kind:'monthly'},
+    {title:'Employee of the Month', org:'SJ Innovation', month:'Aug', year:2020, kind:'monthly'},
+    {title:'SJ Culture Award',      org:'SJ Innovation', month:'Aug', year:2020, kind:'culture'},
+    {title:'Employee of the Month', org:'SJ Innovation', month:'Oct', year:2020, kind:'monthly'},
+    {title:'Employee of the Month', org:'SJ Innovation', month:'Dec', year:2020, kind:'monthly'},
+    {title:'Employee of the Month', org:'SJ Innovation', month:'Jan', year:2021, kind:'monthly'},
+    {title:'Employee of the Month', org:'SJ Innovation', month:'Sep', year:2021, kind:'monthly'},
+    {title:'Employee of the Month', org:'SJ Innovation', month:'Nov', year:2021, kind:'monthly'},
+    {title:'Employee of the Month', org:'SJ Innovation', month:'Mar', year:2022, kind:'monthly'},
+    {title:'Employee of the Month', org:'SJ Innovation', month:'Jun', year:2022, kind:'monthly'},
+  ];  const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const FULL = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  const wall = document.getElementById('wall');
+  const byYear = {};
+  AWARDS.forEach(a => (byYear[a.year] = byYear[a.year] || []).push(a));
+  const years = Object.keys(byYear).sort((a,b) => b - a);
+  let order = 0;
+  years.forEach(y => {
+    let inRow = 0;
+    const list = byYear[y].sort((a,b) => (MONTHS.indexOf(a.month ?? 'Dec') + (a.month ? 0 : 1)) - (MONTHS.indexOf(b.month ?? 'Dec') + (b.month ? 0 : 1)));
+    const row = document.createElement('div'); row.className = 'yrow'; row.setAttribute('role','listitem');
+    row.innerHTML = `<div class="yl">${y}<small>${list.length} award${list.length > 1 ? 's' : ''}</small></div><ul class="medals"></ul>`;
+    const ul = row.querySelector('ul');
+    list.forEach(a => {
+      const li = document.createElement('li');
+      li.className = 'medal ' + (a.kind || 'monthly');
+      const mi = MONTHS.indexOf(a.month);
+      li.setAttribute('aria-label', `${a.title}, ${a.org}, ${mi >= 0 ? FULL[mi] + ' ' : ''}${a.year}`);
+      li.innerHTML = `<div class="swing" style="--d:${(inRow * .13).toFixed(2)}s" aria-hidden="true">
+          <div class="ribbon"></div>
+          <div class="disc" style="--sd:${(order * .7).toFixed(1)}s">
+            <span class="st">★</span><span class="m">${a.kind === 'culture' ? 'Culture' : (a.month || '★')}</span><span class="y">${a.year}</span>
+          </div>
+        </div>
+        <div class="t" aria-hidden="true">${a.title}</div><div class="o" aria-hidden="true">${a.org}</div>`;
+      if (a.kind === 'culture') li.querySelector('.m').style.fontSize = '1.05rem';
+      ul.appendChild(li); order++; inRow++;
+    });
+    wall.appendChild(row);
+    io.observe(row);
+  });
+  const monthly = AWARDS.filter(a => a.kind === 'monthly').length;
+  const orgs = [...new Set(AWARDS.map(a => a.org))];
+  const span = years.length > 1 ? `between ${years[years.length-1]} and ${years[0]}` : `in ${years[0]}`;
+  document.getElementById('awardsSum').innerHTML =
+    `<b>${AWARDS.length} awards</b> ${span}, including <b>${monthly} monthly performance awards</b>${orgs.length === 1 ? ' at ' + orgs[0] : ''}. Each medal below is one of them.`;
+
+  /* ---------- journey rail ---------- */
+  const jr = document.getElementById('jr'), fill = document.getElementById('railFill');
+  const steps = [...jr.querySelectorAll('.step')];
+  steps.forEach(s => s.querySelectorAll('.diff .l').forEach((l,i) => l.style.transitionDelay = (i*0.09)+'s'));
+  function onScroll(){
+    const r = jr.getBoundingClientRect(), vh = innerHeight;
+    const marker = vh * .55;
+    const p = Math.max(0, Math.min(1, (marker - r.top) / r.height));
+    fill.style.setProperty('height', (p*100) + '%');
+    steps.forEach(s => { const sr = s.getBoundingClientRect(); if (sr.top < marker) s.classList.add('on'); else s.classList.remove('on'); });
+    // nav highlight
+    let cur = null;
+    ['journey','work','stack','contact'].forEach(id => { const el = document.getElementById(id); if (el.getBoundingClientRect().top < vh*.4) cur = id; });
+    navLinks.forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#'+cur));
+  }
+  addEventListener('scroll', onScroll, {passive:true}); onScroll();
+
+  /* arch svg pause offscreen / reduced motion */
+  const archSvg = document.querySelector('#arch svg');
+  if (reduce){ archSvg.pauseAnimations && archSvg.pauseAnimations(); document.querySelector('.mapcard svg').pauseAnimations(); }
+
+  /* ---------- footer waves ---------- */
+  const wv = document.getElementById('waves'), wx = wv.getContext('2d');
+  function wavesSize(){ const d = Math.min(devicePixelRatio||1,2); wv.width = wv.clientWidth*d; wv.height = wv.clientHeight*d; wx.setTransform(d,0,0,d,0,0); }
+  wavesSize(); addEventListener('resize', wavesSize);
+  let wOn = false;
+  function wframe(now){
+    const w = wv.clientWidth, h = wv.clientHeight, t = reduce ? 0 : now/1000;
+    wx.clearRect(0,0,w,h);
+    const cols = [C.palm, C.cashew, C.kokum];
+    for (let k=0;k<3;k++){
+      wx.beginPath();
+      for (let x=0;x<=w;x+=6){ const y = h*.35 + k*16 + Math.sin(x*.01 + t*(.8+k*.3) + k*1.7)*(8 - k*2); x ? wx.lineTo(x,y) : wx.moveTo(x,y); }
+      wx.strokeStyle = cols[k]; wx.globalAlpha = .55 - k*.12; wx.lineWidth = 1.5; wx.stroke();
+    }
+    wx.globalAlpha = 1;
+    if (wOn && !reduce) requestAnimationFrame(wframe);
+  }
+  new IntersectionObserver(([e]) => { const was = wOn; wOn = e.isIntersecting; if (wOn && !was) requestAnimationFrame(wframe); }).observe(wv);
+
+  /* ---------- terminal ---------- */
+  const out = document.getElementById('out'), input = document.getElementById('cmd');
+  const esc = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;');
+  const R = {
+    help: () => `<span class="m">commands:</span>
+  whoami     who I am
+  now        what I'm working on
+  reia       the impact analyzer, briefly
+  journey    the career graph
+  stack      tools, newest first
+  goa        where I'm from
+  contact    how to reach me
+  clear      clear the screen`,
+    whoami: () => `Akshay Naik
+Associate Technical Architect, GenAI <span class="m">at</span> Clarivate
+AWS Community Builder <span class="m">and</span> AWS certified (ML Engineer, Solutions Architect)
+11x Employee of the Month <span class="m">at SJ Innovation</span>
+<span class="m">~9.8 years shipping software</span>`,
+    now: () => `<span class="g">running</span> pharma regulatory intelligence automation
+  Life Sciences &amp; Healthcare, on Cortellis
+  LangGraph multi-agent systems, MCP servers, Claude
+  AWS Batch, Fargate, Bedrock, OpenSearch, Aurora, Neptune
+  Terraform for all of it`,
+    reia: () => `REIA <span class="m">(aria)</span>: regulatory change in, impact assessment out
+  <span class="u">orchestrator</span>  LangGraph deep agent
+  <span class="u">tools</span>         Claude Skills, Cortellis MCP servers
+  <span class="u">runtime</span>       AWS Batch on Fargate, default + per-client queues
+  <span class="u">infra</span>         Terraform
+  <span class="u">process</span>       GitFlow, PR reviews, refactoring
+<span class="m">I own it end to end.</span>`,
+    journey: () => `2012  Goa Engineering College
+  │
+2016  Software Developer, Anant Infomedia
+  │
+2019  Software Engineer, SJ Innovation
+2021  Senior Software Engineer
+2022  Tech Lead
+  │
+2025  Associate Technical Architect, Clarivate`,
+    stack: () => `<span class="u">agentic</span>  LangGraph, LangChain, deep agents, MCP, Claude, Bedrock
+<span class="g">cloud</span>    Terraform, CDK, Batch, Fargate, ECR, Aurora, Neptune, OpenSearch, Lambda, API Gateway, DynamoDB
+<span class="k">app</span>      Python, Django, Node.js, React, Angular, PHP, Magento 2, CakePHP, WordPress`,
+    goa: () => `Grew up around Ponda, Goa. Studied at Goa Engineering College.
+First eight years of my career in Panaji and Verna.
+Now in Brookfield, Bangalore. <span class="m">Still miss the sea.</span>`,
+    contact: () => `email     <a href="mailto:akshaynaik18bc@gmail.com">akshaynaik18bc@gmail.com</a>
+linkedin  <a href="https://www.linkedin.com/in/akshaynaik-42b12197" target="_blank" rel="noopener">linkedin.com/in/akshaynaik-42b12197</a>`,
+    ls: () => `journey/  work/  stack/  recognition/  contact.txt`,
+    hello: () => `Hi! Type <span class="u">help</span> to see what I can do.`,
+    hi: () => R.hello()
+  };
+  let busy = false;
+  function print(html){ out.insertAdjacentHTML('beforeend', html + '\n'); out.scrollTop = out.scrollHeight; }
+  function run(raw){
+    const c = raw.trim().toLowerCase().replace(/\s+/g,' ');
+    print(`<span class="g">akshay@goa:~$</span> ${esc(raw)}`);
+    if (!c) return;
+    if (c === 'clear'){ out.innerHTML = ''; return; }
+    const fn = R[c];
+    const res = fn ? fn() : `<span class="k">command not found:</span> ${esc(c)}. Type <span class="u">help</span> for the list.`;
+    if (reduce){ print(res); return; }
+    // stream like a token stream
+    busy = true;
+    const wrap = document.createElement('div'); out.appendChild(wrap);
+    const tmp = document.createElement('div'); tmp.innerHTML = res;
+    const nodes = [...tmp.childNodes]; let ni = 0;
+    (function tick(){
+      if (ni >= nodes.length){ out.appendChild(document.createTextNode('\n')); busy = false; out.scrollTop = out.scrollHeight; return; }
+      const n = nodes[ni];
+      if (n.nodeType === 3){
+        const txt = n.textContent; let last = wrap.lastChild;
+        if (!last || last.nodeType !== 3 || last._done){ last = document.createTextNode(''); wrap.appendChild(last); }
+        const take = Math.min(txt.length, 4 + Math.floor(Math.random()*6));
+        last.textContent += txt.slice(0, take);
+        n.textContent = txt.slice(take);
+        if (!n.textContent){ last._done = true; ni++; }
+      } else { wrap.appendChild(n.cloneNode(true)); ni++; }
+      out.scrollTop = out.scrollHeight;
+      setTimeout(tick, 12);
+    })();
+  }
+  document.getElementById('pf').addEventListener('submit', e => { e.preventDefault(); if (busy) return; const v = input.value; input.value = ''; run(v); });
+  document.getElementById('quick').addEventListener('click', e => { if (e.target.tagName === 'BUTTON' && !busy) run(e.target.textContent); });
+  print(`<span class="m">akshay-agent ready. type</span> <span class="u">help</span> <span class="m">to start.</span>`);
+})();
+</script>
+</body>
+</html>
